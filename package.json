@@ -1,12 +1,22 @@
 {
-    "name": "miniprogram-ts-less-quickstart",
+    "name": "cube-timer",
     "version": "1.0.0",
     "description": "",
-    "scripts": {},
+    "scripts": {
+        "prepare": "husky install"
+    },
+    "lint-staged": {
+        "*.{js, ts}": "eslint"
+    },
     "keywords": [],
     "author": "",
     "license": "",
     "devDependencies": {
+        "@commitlint/cli": "^17.0.3",
+        "@commitlint/config-conventional": "^17.0.3",
+        "eslint": "^8.19.0",
+        "husky": "^8.0.1",
+        "lint-staged": "^11.2.6",
         "miniprogram-api-typings": "^2.8.3-1",
         "prettier": "^2.7.1"
     }
