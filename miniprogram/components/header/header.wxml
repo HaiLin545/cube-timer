@@ -1,0 +1,1 @@
+<view class="header" style="margin-top: {{statusBarHeight}}px; height: {{headerHeight}}px;"> {{cubeType}} </view>

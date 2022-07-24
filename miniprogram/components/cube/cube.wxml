@@ -1,0 +1,4 @@
+<view class="cube">
+    <text>{{msg}}</text>
+    <icon-font icon="icon-Add"></icon-font>
+</view>

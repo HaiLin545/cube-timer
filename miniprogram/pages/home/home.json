@@ -1,0 +1,6 @@
+{
+    "usingComponents": {
+        "cube": "/components/cube/cube"
+    },
+    "navigationStyle": "custom"
+}

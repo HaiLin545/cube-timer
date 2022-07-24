@@ -1,0 +1,12 @@
+<!-- index.wxml -->
+<view class="home">
+    <header></header>
+    <view class="disruption">
+        <text>{{disruption}}</text>
+    </view>
+    <view class="time" bind:tap="handleTap">
+        <text class="time-value">{{time}}</text>
+    </view>
+    <!-- <icon-font icon="icon-timer"></icon-font>
+    <cube></cube> -->
+</view>

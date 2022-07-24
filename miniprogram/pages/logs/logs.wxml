@@ -1,6 +1,13 @@
 <!--logs.wxml-->
-<view class="container log-list">
-    <block wx:for="{{logs}}" wx:key="timeStamp" wx:for-item="log">
-        <text class="log-item">{{index + 1}}. {{log.date}}</text>
-    </block>
+<view class="record">
+    <header></header>
+    <button class="add-btn" bind:tap="handleTap">Add Record</button>
+
+    <view class="record-container">
+        <view class="record-list">
+            <view class="record-item" wx:for="{{records}}" wx:key="date" wx:for-item="record">
+                <text class="record-score"> {{record.score}}</text>
+            </view>
+        </view>
+    </view>
 </view>

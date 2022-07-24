@@ -1,19 +1,30 @@
 // logs.ts
-// const util = require('../../utils/util.js')
-import { formatTime } from "../../utils/util";
+
+const app = getApp<IAppOption>();
 
 Page({
     data: {
-        logs: [],
+        records: app.historyData,
     },
-    onLoad() {
+    onLoad() {},
+    handleTap() {
+        const record = {
+            data: Date(),
+            score: (Math.random() * 5 + 8.0).toFixed(2),
+        };
+        app.historyData.unshift(record);
         this.setData({
-            logs: (wx.getStorageSync("logs") || []).map((log: string) => {
-                return {
-                    date: formatTime(new Date(log)),
-                    timeStamp: log,
-                };
-            }),
+            records: app.historyData,
+        });
+    },
+    onShow() {
+        if (typeof this.getTabBar === "function" && this.getTabBar()) {
+            this.getTabBar().setData({
+                selected: 1,
+            });
+        }
+        this.setData({
+            records: app.historyData,
         });
     },
 });

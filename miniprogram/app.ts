@@ -1,18 +1,26 @@
 // app.ts
-App<IAppOption>({
-    globalData: {},
-    onLaunch() {
-        // 展示本地存储能力
-        const logs = wx.getStorageSync("logs") || [];
-        logs.unshift(Date.now());
-        wx.setStorageSync("logs", logs);
-
-        // 登录
-        wx.login({
-            success: (res) => {
-                console.log(res.code);
-                // 发送 res.code 到后台换取 openId, sessionKey, unionId
-            },
-        });
+// App<IAppOption>({
+App({
+    globalData: {
+        test: 1,
     },
+    historyData: [
+        {
+            date: "2022/7/24 17:45:00",
+            score: "12.12",
+        },
+        {
+            date: "2022/7/24 17:46:00",
+            score: "11.88",
+        },
+        {
+            date: "2022/7/24 17:47:00",
+            score: "11.22",
+        },
+    ],
+
+    systemInfo: wx.getSystemInfoSync(),
+    menuButtonInfo: wx.getMenuButtonBoundingClientRect(),
+    onLaunch() {},
+    handleChangeTest() {},
 });
