@@ -1,8 +1,22 @@
+@border-radius: 20rpx;
+
 .header {
-    // background-color: white;
-    // text-align: center;
+    background-color: white;
     display: flex;
-    justify-content: center;
     align-items: center;
-    font-size: 20px;
+    justify-content: center;
+    padding-bottom: 10rpx;
+    border-bottom-left-radius: @border-radius;
+    border-bottom-right-radius: @border-radius;
+    background-color: rgba(255, 255, 255, 0.5);
+    .left {
+        position: absolute;
+        left: 32rpx;
+        // background-color: blue;
+    }
+
+    .cube-and-group {
+        font-size: 30rpx;
+        // background-color: red;
+    }
 }

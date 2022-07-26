@@ -1,12 +1,18 @@
 <!-- index.wxml -->
 <view class="home">
-    <header></header>
-    <view class="disruption">
-        <text>{{disruption}}</text>
-    </view>
-    <view class="time" bind:tap="handleTap">
-        <text class="time-value">{{time}}</text>
-    </view>
-    <!-- <icon-font icon="icon-timer"></icon-font>
-    <cube></cube> -->
+    <header bind:onSetting="openSideBlock"></header>
+    <main class="main">
+        <swiper class="swiper" bind:change="handleTabChange" current="{{currentTabIndex}}" duration="300">
+            <swiper-item class="swiper-item">
+                <timer-block></timer-block>
+            </swiper-item>
+            <swiper-item class="swiper-item">
+                <record-block></record-block>
+            </swiper-item>
+            <swiper-item class="swiper-item">
+                <statistic-block></statistic-block>
+            </swiper-item>
+        </swiper>
+    </main>
+    <tabbar tabindex="{{currentTabIndex}}" bind:onClickTab="handleClickTab"></tabbar>
 </view>

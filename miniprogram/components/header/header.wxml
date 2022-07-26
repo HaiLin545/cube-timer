@@ -1,1 +1,9 @@
-<view class="header" style="margin-top: {{statusBarHeight}}px; height: {{headerHeight}}px;"> {{cubeType}} </view>
+<view class="header" style="padding-top: {{statusBarHeight}}px; height: {{headerHeight}}px;">
+    <view class="left">
+        <icon-font class="setting-icon" icon="icon-settings-4-line" size="50rpx" bind:tap="handleTapSetting">
+        </icon-font>
+    </view>
+    <view class="cube-and-group">
+        <view class="cube-type">{{cubeType}}</view>
+    </view>
+</view>

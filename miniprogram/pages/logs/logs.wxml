@@ -1,13 +1,2 @@
 <!--logs.wxml-->
-<view class="record">
-    <header></header>
-    <button class="add-btn" bind:tap="handleTap">Add Record</button>
-
-    <view class="record-container">
-        <view class="record-list">
-            <view class="record-item" wx:for="{{records}}" wx:key="date" wx:for-item="record">
-                <text class="record-score"> {{record.score}}</text>
-            </view>
-        </view>
-    </view>
-</view>
+<view class="record"> </view>

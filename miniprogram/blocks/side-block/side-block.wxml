@@ -1,0 +1,1 @@
+<view class="side-block" style="padding-top: {{statusBarHeight}}px;"> side-block </view>

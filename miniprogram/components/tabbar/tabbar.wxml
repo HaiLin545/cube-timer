@@ -1,0 +1,12 @@
+<view class="tabbar">
+    <view class="tab-list">
+        <view class="tab-item" wx:for="{{tabs}}" wx:key="icon" bind:tap="handleClickTab" data-index="{{index}}">
+            <icon-font
+                class="tab-icon"
+                icon="{{item.icon}}"
+                size="{{iconSize}}"
+                color="{{tabindex==index? selectedColor: color}}"
+            ></icon-font>
+        </view>
+    </view>
+</view>

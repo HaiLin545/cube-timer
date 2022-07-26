@@ -6,4 +6,11 @@ Component({
         statusBarHeight: app.systemInfo.statusBarHeight,
         headerHeight: 2 * (app.menuButtonInfo.top - app.systemInfo.statusBarHeight) + app.menuButtonInfo.height,
     },
+    methods: {
+        handleTapSetting() {
+            wx.navigateTo({
+                url: "/pages/logs/logs",
+            });
+        },
+    },
 });

@@ -1,28 +1,13 @@
 {
     "pages": ["pages/home/home", "pages/logs/logs"],
     "usingComponents": {
-        "icon-font": "/components/icon-font/icon-font",
-        "header": "/components/header/header"
+        "icon-font": "/components/icon-font/icon-font"
     },
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "Weixin",
-        "navigationBarTextStyle": "black",
-        "pageOrientation": "auto"
-    },
-    "tabBar": {
-        "custom": true,
-        "list": [
-            {
-                "pagePath": "pages/home/home",
-                "text": "组件"
-            },
-            {
-                "pagePath": "pages/logs/logs",
-                "text": "接口"
-            }
-        ]
+        "navigationBarTextStyle": "black"
     },
     "style": "v2",
     "sitemapLocation": "sitemap.json"
