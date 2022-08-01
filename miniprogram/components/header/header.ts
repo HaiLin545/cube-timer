@@ -9,7 +9,7 @@ Component({
     methods: {
         handleTapSetting() {
             wx.navigateTo({
-                url: "/pages/logs/logs",
+                url: "/pages/user/user",
             });
         },
     },

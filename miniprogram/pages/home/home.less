@@ -19,34 +19,3 @@
         height: 100%;
     }
 }
-
-.side {
-    z-index: 200;
-    width: 100vw;
-    position: absolute;
-    height: 100vh;
-    display: flex;
-    .left {
-        width: 500rpx;
-        position: absolute;
-        z-index: 300;
-        background-color: lightblue;
-        transition: ease 500ms;
-    }
-    .right {
-        flex: 1;
-        transition: ease 500ms;
-        opacity: 0.5;
-        background-color: black;
-    }
-    &.hidden {
-        .left {
-            transform: translateX(-100%);
-        }
-        .right {
-            opacity: 0;
-            flex: 10;
-        }
-        visibility: hidden;
-    }
-}

@@ -1,0 +1,79 @@
+<view class="user" style="padding-top:{{statusBarHeight}}px">
+    <view class="nav-bar" style="height: {{navBarHeight}}px">
+        <icon-font bind:tap="handleTapBack" class="back-icon" icon="icon-arrow-left-s-line" size="60rpx"></icon-font>
+    </view>
+    <view class="user-info" wx:if="{{isLogin}}">
+        <image class="user-avatar" src=""> </image>
+        <view class="user-name">{{userName}}</view>
+    </view>
+    <view class="login-area" wx:else>
+        <icon-font class="not-login-avatar" icon="icon-sentiment-neutral" size="150rpx"> </icon-font>
+        <view class="login-btn" bind:tap="handleTapLoginBtn">登陆/注册</view>
+    </view>
+    <view class="entry-list">
+        <view wx:for="{{entryList}}" wx:key="title" wx:for-item="entry">
+            <view wx:if="{{entry.line}}" class="separate-line"></view>
+            <view
+                wx:else
+                class="entry-item {{currentMode===entry.mode ? 'current-mode' : ''}}"
+                bind:tap="handleTapEntry"
+                data-type="{{entry.mode || entry.link}}"
+                data-index="{{index}}"
+            >
+                <icon-font
+                    catch:tap="handleTapEntry"
+                    data-index="{{index}}"
+                    data-type="{{entry.mode || entry.link}}"
+                    icon="{{entry.icon}}"
+                    class="entry-icon"
+                    size="50rpx"
+                ></icon-font>
+                <text
+                    catch:tap="handleTapEntry"
+                    data-type="{{entry.mode || entry.link}}"
+                    data-index="{{index}}"
+                    class="entry-title"
+                >
+                    {{entry.title}}
+                </text>
+                <icon-font
+                    catch:tap="handleTapEntry"
+                    data-type="{{entry.mode || entry.link}}"
+                    data-index="{{index}}"
+                    wx:if="{{entry.isComposed}}"
+                    icon="icon-arrowdown"
+                    class="arrow-down {{entry.isComposed && entry.isOpen?'is-open': ''}}"
+                    size="40rpx"
+                ></icon-font>
+            </view>
+            <view wx:if="{{entry.isComposed}}" class="child-entry-list {{entry.isOpen?'is-open': ''}}">
+                <view
+                    class="entry-item child-entry-item {{entry.isOpen?'is-open': ''}}  {{currentMode===childEntry.mode ? 'current-mode' : ''}}"
+                    wx:for="{{entry.childEntryList}}"
+                    wx:for-item="childEntry"
+                    wx:key="mode"
+                    bind:tap="handleTapEntry"
+                    data-type="{{childEntry.mode}}"
+                    data-index="{{index}}"
+                >
+                    <icon-font
+                        catch:tap="handleTapEntry"
+                        data-type="{{childEntry.mode}}"
+                        data-index="{{index}}"
+                        icon="{{childEntry.icon}}"
+                        class="entry-icon child-entry-icon"
+                        size="40rpx"
+                    ></icon-font>
+                    <text
+                        catch:tap="handleTapEntry"
+                        data-type="{{childEntry.mode}}"
+                        data-index="{{index}}"
+                        class="entry-title child-entry-title"
+                    >
+                        {{childEntry.title}}
+                    </text>
+                </view>
+            </view>
+        </view>
+    </view>
+</view>

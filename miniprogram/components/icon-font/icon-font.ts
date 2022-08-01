@@ -12,5 +12,9 @@ Component({
             type: String,
             value: "black",
         },
+        weight: {
+            type: String,
+            value: "normal",
+        },
     },
 });
