@@ -76,8 +76,8 @@ Page({
                 break;
             case "训练器OLL":
             case "训练器PLL":
-            case "公式器OLL":
-            case "公式器PLL":
+            case "公式库OLL":
+            case "公式库PLL":
                 this.setData({
                     currentMode: type,
                 });

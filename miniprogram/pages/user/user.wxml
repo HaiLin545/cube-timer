@@ -48,7 +48,7 @@
             </view>
             <view wx:if="{{entry.isComposed}}" class="child-entry-list {{entry.isOpen?'is-open': ''}}">
                 <view
-                    class="entry-item child-entry-item {{entry.isOpen?'is-open': ''}}  {{currentMode===childEntry.mode ? 'current-mode' : ''}}"
+                    class="entry-item child-entry-item {{entry.isOpen?'is-open': ''}} {{currentMode===childEntry.mode ? 'current-mode' : ''}}"
                     wx:for="{{entry.childEntryList}}"
                     wx:for-item="childEntry"
                     wx:key="mode"

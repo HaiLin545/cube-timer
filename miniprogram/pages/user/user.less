@@ -1,10 +1,9 @@
 .user {
     background-color: #cde1fd;
-    height: 100vh;
+    min-height: 100vh;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    // padding-bottom: env(safe)
 }
 
 .nav-bar {
@@ -42,14 +41,14 @@
     align-items: center;
     .login-btn {
         margin-left: 25rpx;
-        height: 66rpx;
+        line-height: 60rpx;
+        width: 180rpx;
+        height: 60rpx;
         text-align: center;
-        width: 190rpx;
         background-color: rgba(255, 255, 255, 0.5);
         border-radius: 20rpx;
         font-size: 30rpx;
         padding: 11rpx 26rpx;
-        line-height: 66rpx;
         box-shadow: 0rpx 0rpx 16rpx rgba(0, 0, 0, 0.2);
         &:active {
             background-color: rgba(255, 255, 255, 0.2);
@@ -85,7 +84,7 @@
             }
         }
         &:active {
-            background-color: #cde1fd;
+            background-color: rgba(0, 0, 0, 0.1);
         }
         &.current-mode {
             background-color: #cde1fd;
@@ -93,10 +92,10 @@
     }
 
     .separate-line {
-        height: 1px;
+        height: 2rpx;
         width: 100vw;
-        margin: 20rpx 0;
-        background-color: rgba(0, 0, 0, 0.6);
+        margin: 25rpx 0;
+        background-color: rgba(0, 0, 0, 0.5);
     }
 }
 
@@ -110,14 +109,9 @@
         .child-entry-icon {
             margin-left: 150rpx;
         }
-        transition-delay: 0ms;
         opacity: 0;
         &.is-open {
             opacity: 1;
-            transition-delay: 250ms;
-        }
-        &:active {
-            background-color: #cde1fd;
         }
     }
     &.is-open {
