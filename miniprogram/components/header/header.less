@@ -1,7 +1,6 @@
 @border-radius: 20rpx;
 
 .header {
-    background-color: white;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -12,11 +11,38 @@
     .left {
         position: absolute;
         left: 32rpx;
-        // background-color: blue;
+        .setting-icon {
+            margin-right: 25rpx;
+        }
     }
 
     .cube-and-group {
-        font-size: 30rpx;
-        // background-color: red;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 0 50rpx;
+        .cube-type {
+            width: fit-content;
+            position: relative;
+            .cube-type-name {
+                display: inline-block;
+                font-size: 34rpx;
+            }
+            .switch-group-icon {
+                position: absolute;
+                right: -40rpx;
+                bottom: -5rpx;
+            }
+        }
+        .current-group {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: rgba(0, 0, 0, 0.6);
+            font-size: 25rpx;
+        }
+        &:active {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
     }
 }
