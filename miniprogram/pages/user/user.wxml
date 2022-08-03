@@ -12,9 +12,8 @@
     </view>
     <view class="entry-list">
         <view wx:for="{{entryList}}" wx:key="title" wx:for-item="entry">
-            <view wx:if="{{entry.line}}" class="separate-line"></view>
+            <view wx:if="{{index > 0 &&index %3 ===0}}" class="separate-line"></view>
             <view
-                wx:else
                 class="entry-item {{currentMode===entry.mode ? 'current-mode' : ''}}"
                 bind:tap="handleTapEntry"
                 data-type="{{entry.mode || entry.link}}"
@@ -42,11 +41,16 @@
                     data-index="{{index}}"
                     wx:if="{{entry.isComposed}}"
                     icon="icon-arrowdown"
-                    class="arrow-down {{entry.isComposed && entry.isOpen?'is-open': ''}}"
+                    class="arrow-down {{entry.isComposed && entry.isOpen?'is-open': ''}} "
+                    style="transition: {{delayTransition?'300ms': '0' }} ease;"
                     size="40rpx"
                 ></icon-font>
             </view>
-            <view wx:if="{{entry.isComposed}}" class="child-entry-list {{entry.isOpen?'is-open': ''}}">
+            <view
+                wx:if="{{entry.isComposed}}"
+                class="child-entry-list {{entry.isOpen?'is-open': ''}}"
+                style="transition: {{delayTransition?'300ms':'0'}} ease;"
+            >
                 <view
                     class="entry-item child-entry-item {{entry.isOpen?'is-open': ''}} {{currentMode===childEntry.mode ? 'current-mode' : ''}}"
                     wx:for="{{entry.childEntryList}}"

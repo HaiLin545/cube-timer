@@ -1,8 +1,10 @@
 // app.ts
 // App<IAppOption>({
-App({
-    globalData: {
-        test: 1,
+import { MODE } from "./type";
+
+App<IAppOption>({
+    data: {
+        mode: MODE.TIMER,
     },
     historyData: [
         {

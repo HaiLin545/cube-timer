@@ -1,23 +1,28 @@
+import { MODE } from "../../type";
+
+//@ts-ignore
 const app = getApp<IAppOption>();
 
 Page({
     data: {
+        currentMode: "",
+        delayTransition: false,
         isLogin: false,
         statusBarHeight: app.systemInfo.statusBarHeight,
         navBarHeight: app.menuButtonInfo.bottom + app.menuButtonInfo.top - 2 * app.systemInfo.statusBarHeight,
         userAvatar: "",
         userName: "Hailin",
         entryList: [
-            { icon: "icon-timer", title: "计时器", mode: "计时器" },
+            { icon: "icon-timer", title: "计时器", mode: MODE.TIMER },
             {
                 icon: "icon-healing",
                 title: "训练器",
                 isComposed: true,
                 isOpen: false,
-                mode: "训练器",
+                mode: MODE.PRATICE,
                 childEntryList: [
-                    { icon: "icon-timer", title: "OLL", mode: "训练器OLL" },
-                    { icon: "icon-timer", title: "PLL", mode: "训练器PLL" },
+                    { icon: "icon-timer", title: "OLL", mode: MODE.PRATICE_OLL },
+                    { icon: "icon-timer", title: "PLL", mode: MODE.PRATICE_PLL },
                 ],
             },
             {
@@ -25,21 +30,18 @@ Page({
                 title: "公式库",
                 isComposed: true,
                 isOpen: false,
-                mode: "公式库",
+                mode: MODE.FORMULA,
                 childEntryList: [
-                    { icon: "icon-timer", title: "OLL", mode: "公式库OLL" },
-                    { icon: "icon-timer", title: "PLL", mode: "公式库PLL" },
+                    { icon: "icon-timer", title: "OLL", mode: MODE.FORMULA_OLL },
+                    { icon: "icon-timer", title: "PLL", mode: MODE.FORMULA_PLL },
                 ],
             },
-            { line: true },
             { icon: "icon-folder-add-line", title: "导入/导出", link: "/" },
             { icon: "icon-paint_outlined", title: "主题配色", link: "/" },
             { icon: "icon-palette-line", title: "魔方配色", link: "/" },
-            { line: true },
             { icon: "icon-settings-4-line", title: "设置", link: "/" },
             { icon: "icon-helpoutline", title: "关于与反馈", link: "/" },
         ],
-        currentMode: "计时器",
     },
     handleTapBack() {
         wx.navigateBack();
@@ -47,7 +49,6 @@ Page({
     handleTapLoginBtn() {
         wx.login({
             success: (res) => {
-                console.log(res);
                 if (res.code) {
                 }
             },
@@ -56,34 +57,48 @@ Page({
     handleTapEntry(e) {
         const type = e.target.dataset.type;
         const index = e.target.dataset.index;
-        console.log(type, index);
-
         if (type === this.data.currentMode) {
             return;
         }
         switch (type) {
-            case "计时器":
+            case MODE.TIMER:
+            case MODE.FORMULA_OLL:
+            case MODE.FORMULA_PLL:
+            case MODE.PRATICE_OLL:
+            case MODE.PRATICE_PLL:
                 this.setData({
                     currentMode: type,
                 });
+                app.data.mode = type;
                 break;
-            case "训练器":
-            case "公式库":
-                console.log(this.data.entryList[index].isOpen);
+            case MODE.PRATICE:
+            case MODE.FORMULA:
                 this.setData({
                     [`entryList[${index}].isOpen`]: !this.data.entryList[index].isOpen,
                 });
                 break;
-            case "训练器OLL":
-            case "训练器PLL":
-            case "公式库OLL":
-            case "公式库PLL":
-                this.setData({
-                    currentMode: type,
-                });
-                break;
             default:
                 break;
+        }
+    },
+    onLoad() {
+        // 处理选中MODE的样式
+        const mode = app.data.mode;
+        const isOpen_1 = mode === MODE.PRATICE_OLL || mode === MODE.PRATICE_PLL;
+        const isOpen_2 = mode === MODE.FORMULA_OLL || mode === MODE.FORMULA_PLL;
+        this.setData({
+            currentMode: mode,
+            delayTransition: !isOpen_1 && !isOpen_2,
+            [`entryList[1].isOpen`]: isOpen_1,
+            [`entryList[2].isOpen`]: isOpen_2,
+        });
+        // 使用delayTransition来暂时取消transition，避免刚进入用户页就产生动画
+        if (!this.data.delayTransition) {
+            setTimeout(() => {
+                this.setData({
+                    delayTransition: true,
+                });
+            }, 100);
         }
     },
 });

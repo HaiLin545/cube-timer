@@ -1,3 +1,4 @@
+//@ts-ignore
 const app = getApp<IAppOption>();
 
 Component({
