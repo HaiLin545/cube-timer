@@ -14,6 +14,14 @@ interface IAppOption {
     data: { mode: MODE };
     systemInfo: WechatMiniprogram.SystemInfo;
     menuButtonInfo: any;
-    historyData: Object[];
+    records: Object[];
     handleChangeTest: () => void;
+    addRecord: Function;
+}
+
+interface IRecord {
+    date: Date;
+    id: string;
+    score: string;
+    day: string;
 }

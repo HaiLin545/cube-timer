@@ -2,7 +2,11 @@
     <view class="disruption">
         <text>{{disruption}}</text>
     </view>
-    <view class="time" bind:tap="handleTap">
-        <text class="time-value">{{time}}</text>
+    <view class="clock" bind:tap="handleTap">
+        <view class="time-value">
+            <text class="time-left">{{timeLeft}}</text>
+            <text class="time-right">.{{timeRight}}</text>
+        </view>
     </view>
+    <view class="tools"> tools </view>
 </view>

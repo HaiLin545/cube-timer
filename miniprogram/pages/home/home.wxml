@@ -4,10 +4,10 @@
     <main class="main">
         <swiper class="swiper" bind:change="handleTabChange" current="{{currentTabIndex}}" duration="300">
             <swiper-item class="swiper-item">
-                <timer-block></timer-block>
+                <timer-block bind:onAddRecord="onAddRecord"></timer-block>
             </swiper-item>
             <swiper-item class="swiper-item">
-                <record-block></record-block>
+                <record-block records="{{records}}"></record-block>
             </swiper-item>
             <swiper-item class="swiper-item">
                 <statistic-block></statistic-block>

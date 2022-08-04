@@ -1,3 +1,35 @@
 .timer-block {
+    display: flex;
     height: 100%;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+}
+
+.disruption {
+    margin: 20rpx;
+    text-align: center;
+    line-height: 50rpx;
+    font-size: 34rpx;
+}
+
+.clock {
+    position: absolute;
+    right: 0;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .time-value {
+        transform: translateY(-50%);
+    }
+    .time-left {
+        font-size: 150rpx;
+    }
+    .time-right {
+        font-size: 120rpx;
+    }
 }

@@ -2,21 +2,10 @@
 const app = getApp<IAppOption>();
 
 Component({
-    properties: {},
-    data: {
-        records: app.historyData,
+    properties: {
+        records: Array,
     },
-    methods: {
-        handleTap() {
-            const record = {
-                data: Date(),
-                score: (Math.random() * 5 + 8.0).toFixed(2),
-            };
-            app.historyData.unshift(record);
-            this.setData({
-                records: app.historyData,
-            });
-        },
-    },
+    data: {},
+    methods: {},
     lifetimes: {},
 });
