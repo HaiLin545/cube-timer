@@ -8,5 +8,7 @@
             <text class="time-right">.{{timeRight}}</text>
         </view>
     </view>
-    <view class="tools"> tools </view>
+    <view class="tools">
+        <cube2d></cube2d>
+    </view>
 </view>

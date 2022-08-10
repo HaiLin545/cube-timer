@@ -1,7 +1,8 @@
 {
     "pages": ["pages/home/home", "pages/user/user"],
     "usingComponents": {
-        "icon-font": "/components/icon-font/icon-font"
+        "icon-font": "/components/icon-font/icon-font",
+        "cube2d": "/components/cube/cube"
     },
     "window": {
         "backgroundTextStyle": "light",
