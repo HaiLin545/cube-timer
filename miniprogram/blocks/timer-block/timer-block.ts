@@ -13,6 +13,9 @@ Component({
         timer: 0,
         disruption: "F2 R B2 L2 R U2 L F L2 R' D U B2 L U2 R D2 R2",
     },
+    lifetimes: {
+        attached() {},
+    },
     observers: {
         time: function (time) {
             let [tmpLeft, tmpRight] = time.split(".");
@@ -54,6 +57,11 @@ Component({
             });
             this.setData({
                 isTiming: false,
+            });
+        },
+        onRefreshDisruption() {
+            this.setData({
+                disruption: "F2 R",
             });
         },
     },

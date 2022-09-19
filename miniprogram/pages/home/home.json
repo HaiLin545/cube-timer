@@ -1,6 +1,5 @@
 {
     "usingComponents": {
-        "cube": "/components/cube/cube",
         "header": "/components/header/header",
         "tabbar": "/components/tabbar/tabbar",
         "timer-block": "/blocks/timer-block/timer-block",

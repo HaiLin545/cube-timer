@@ -1,7 +1,23 @@
 <view class="timer-block">
-    <view class="disruption">
-        <text>{{disruption}}</text>
+    <view class="top">
+        <view class="disruption">{{disruption}}</view>
+        <view class="buttons">
+            <view class="left">
+                <view class="btn">
+                    <icon-font icon="icon-add-circle-line" size="50rpx"></icon-font>
+                </view>
+            </view>
+            <view class="right">
+                <view class="btn">
+                    <icon-font class="btn" icon="icon-pencil-line" size="50rpx"></icon-font>
+                </view>
+                <view class="btn" bind:tap="onRefreshDisruption">
+                    <icon-font class="btn" icon="icon-cached" size="50rpx"></icon-font>
+                </view>
+            </view>
+        </view>
     </view>
+
     <view class="clock" bind:tap="handleTap">
         <view class="time-value">
             <text class="time-left">{{timeLeft}}</text>
@@ -9,6 +25,6 @@
         </view>
     </view>
     <view class="tools">
-        <cube2d></cube2d>
+        <cube2d disruption="{{disruption}}" />
     </view>
 </view>
