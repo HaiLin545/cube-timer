@@ -43,8 +43,7 @@ Component({
         disruption: {
             type: String,
             value: "",
-            observer: function (newVal, oldVal) {
-                console.log(newVal, oldVal);
+            observer: function (newVal) {
                 const originState = Object.keys(theme).map((key) => initFace(theme[key]));
                 this.setData({
                     u: originState[0],
@@ -54,13 +53,12 @@ Component({
                     b: originState[4],
                     d: originState[5],
                 });
-                this.disruptWithFormula(this.data.disruption.split(" "));
+                this.disruptWithFormula(newVal.split(" "));
             },
         },
     },
     lifetimes: {
         attached() {
-            console.log("123");
             this.disruptWithFormula(this.data.disruption.split(" "));
         },
     },
