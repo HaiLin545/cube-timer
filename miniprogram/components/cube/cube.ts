@@ -1,10 +1,10 @@
 const theme: { [propName: string]: string } = {
-    u: "white",
-    f: "lightgreen",
-    r: "red",
-    l: "orange",
-    b: "skyblue",
-    d: "yellow",
+    u: "#FFFFFF",
+    f: "#00B578",
+    r: "#FA5151",
+    l: "#FF8F1F",
+    b: "#3662EC",
+    d: "#fefe3f",
 };
 
 interface IFace {
@@ -44,6 +44,7 @@ Component({
             type: String,
             value: "",
             observer: function (newVal) {
+                console.log("disruption observer", newVal);
                 const originState = Object.keys(theme).map((key) => initFace(theme[key]));
                 this.setData({
                     u: originState[0],
@@ -58,9 +59,7 @@ Component({
         },
     },
     lifetimes: {
-        attached() {
-            this.disruptWithFormula(this.data.disruption.split(" "));
-        },
+        attached() {},
     },
     methods: {
         rotateY(row: number, times: RotateTime, state: IFace[][]): IFace[][] {
@@ -258,60 +257,6 @@ Component({
                 b: state[4],
                 d: state[5],
             });
-        },
-        U() {
-            this.disruptWithFormula(["U"]);
-        },
-        U2() {
-            this.disruptWithFormula(["U2"]);
-        },
-        U_() {
-            this.disruptWithFormula(["U_"]);
-        },
-        D() {
-            this.disruptWithFormula(["D"]);
-        },
-        D2() {
-            this.disruptWithFormula(["D2"]);
-        },
-        D_() {
-            this.disruptWithFormula(["D_"]);
-        },
-        R() {
-            this.disruptWithFormula(["R"]);
-        },
-        R2() {
-            this.disruptWithFormula(["R2"]);
-        },
-        R_() {
-            this.disruptWithFormula(["R_"]);
-        },
-        L() {
-            this.disruptWithFormula(["L"]);
-        },
-        L2() {
-            this.disruptWithFormula(["L2"]);
-        },
-        L_() {
-            this.disruptWithFormula(["L_"]);
-        },
-        F() {
-            this.disruptWithFormula(["F"]);
-        },
-        F2() {
-            this.disruptWithFormula(["F2"]);
-        },
-        F_() {
-            this.disruptWithFormula(["F_"]);
-        },
-        B() {
-            this.disruptWithFormula(["B"]);
-        },
-        B2() {
-            this.disruptWithFormula(["B2"]);
-        },
-        B_() {
-            this.disruptWithFormula(["B_"]);
         },
     },
 });

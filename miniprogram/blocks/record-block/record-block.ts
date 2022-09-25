@@ -5,7 +5,13 @@ Component({
     properties: {
         records: Array,
     },
-    data: {},
-    methods: {},
+    data: {
+        showRecordDetail: true,
+    },
+    methods: {
+        onClickRecordItem(e) {
+            this.triggerEvent("showRecordPopper", { record: e.currentTarget.dataset.record });
+        },
+    },
     lifetimes: {},
 });

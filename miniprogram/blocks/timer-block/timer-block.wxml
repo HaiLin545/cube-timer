@@ -19,12 +19,11 @@
     </view>
 
     <view class="clock" bind:tap="handleTap">
-        <view class="time-value">
-            <text class="time-left">{{timeLeft}}</text>
-            <text class="time-right">.{{timeRight}}</text>
-        </view>
+        <time-box time="{{time}}" size="{{150}}"></time-box>
     </view>
     <view class="tools">
-        <cube2d disruption="{{disruption}}" />
+        <view class="cube">
+            <cube2d disruption="{{disruption}}" />
+        </view>
     </view>
 </view>

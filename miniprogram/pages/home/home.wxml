@@ -7,12 +7,13 @@
                 <timer-block bind:onAddRecord="onAddRecord"></timer-block>
             </swiper-item>
             <swiper-item class="swiper-item">
-                <record-block records="{{records}}"></record-block>
+                <record-block records="{{records}}" bind:showRecordPopper="handelShowRecordPopper"></record-block>
             </swiper-item>
             <swiper-item class="swiper-item">
                 <statistic-block></statistic-block>
             </swiper-item>
         </swiper>
     </main>
+    <record-popper wx:if="{{isShowRecordPopper}}" record="{{popperRecord}}" bind:closeRecordPopper="handleCloseRecordPopper"></record-popper>
     <tabbar tabindex="{{currentTabIndex}}" bind:onClickTab="handleClickTab"></tabbar>
 </view>

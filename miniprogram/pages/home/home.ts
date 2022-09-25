@@ -9,6 +9,8 @@ Page({
         currentTabIndex: 0,
         isHiddenSideBlock: true,
         records: app.records,
+        isShowRecordPopper: false,
+        popperRecord: {},
     },
     handleTabChange(e: any) {
         console.log("tabindex改变为", e.detail.current);
@@ -25,8 +27,26 @@ Page({
     onLoad() {},
     onShow() {},
     onAddRecord(e: any) {
-        console.log(e);
-        app.addRecord(e.detail.record, this);
+        console.log("add new record", e.detail.record);
+        app.addRecord(e.detail.record);
+        this.setData({
+            records: app.records,
+        });
+    },
+    handelShowRecordPopper(e) {
+        console.log("showRecordPopper", e.detail.record);
+        this.setData({
+            popperRecord: e.detail.record,
+        });
+        this.setData({
+            isShowRecordPopper: true,
+        });
+    },
+    handleCloseRecordPopper() {
+        console.log("closeRecordPopper");
+        this.setData({
+            isShowRecordPopper: false,
+        });
     },
     methods: {},
 });

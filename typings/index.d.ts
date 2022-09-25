@@ -17,6 +17,7 @@ interface IAppOption {
     records: Object[];
     handleChangeTest: () => void;
     addRecord: Function;
+    cache: Object;
 }
 
 interface IRecord {

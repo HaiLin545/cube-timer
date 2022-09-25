@@ -1,4 +1,4 @@
-import { formatTime } from "../../utils/util";
+import { formatTimeTiny } from "../../utils/util";
 
 const app = getApp<IAppOption>();
 
@@ -8,11 +8,8 @@ const disruptionLength = 21;
 Component({
     properties: {},
     data: {
-        time: "0.00",
-        timeLeft: "0",
-        timeRight: "00",
+        time: 0,
         isTiming: false,
-        fixedBit: 2,
         timer: 0,
         disruption: "",
     },
@@ -23,15 +20,7 @@ Component({
             });
         },
     },
-    observers: {
-        time: function (time) {
-            let [tmpLeft, tmpRight] = time.split(".");
-            this.setData({
-                timeLeft: tmpLeft,
-                timeRight: tmpRight,
-            });
-        },
-    },
+    observers: {},
     methods: {
         handleTap() {
             console.log("Tap the timer");
@@ -41,11 +30,10 @@ Component({
             console.log("start timing");
             this.setData({
                 isTiming: true,
-                time: "0.00",
+                time: 0,
                 timer: setInterval(() => {
-                    let tmp = (Number(this.data.time) + 0.01).toFixed(this.data.fixedBit);
                     this.setData({
-                        time: tmp,
+                        time: this.data.time + 10,
                     });
                 }, 10),
             });
@@ -56,10 +44,12 @@ Component({
             const record_date = new Date();
             this.triggerEvent("onAddRecord", {
                 record: {
-                    date: record_date,
+                    date: record_date.toString(),
                     score: this.data.time,
-                    day: formatTime(record_date),
+                    day: formatTimeTiny(record_date),
                     id: record_date.valueOf(),
+                    disruption: this.data.disruption,
+                    remark: "",
                 },
             });
             this.setData({

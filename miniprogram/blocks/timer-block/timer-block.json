@@ -1,6 +1,4 @@
 {
     "component": true,
-    "usingComponents": {
-        "cube2d": "/components/cube/cube"
-    }
+    "usingComponents": {}
 }

@@ -1,8 +1,8 @@
 <view class="record">
     <view class="record-container" wx:if="{{records.length>0}}">
         <view class="record-list">
-            <view class="record-item" wx:for="{{records}}" wx:key="id" wx:for-item="record">
-                <text class="record-score"> {{record.score}}</text>
+            <view class="record-item" wx:for="{{records}}" wx:key="id" wx:for-item="record" bind:tap="onClickRecordItem" data-record="{{record}}">
+                <time-box time="{{record.score}}"></time-box>
                 <view class="record-date">{{record.day}}</view>
             </view>
         </view>

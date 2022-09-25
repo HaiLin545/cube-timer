@@ -1,0 +1,31 @@
+<view class="record-popper" bind:tap="onClickWrapper">
+    <view class="container" catchtap="onClickPopper">
+        <view class="top">
+            <view class="score">
+                <time-box time="{{record.score}}" size="50"></time-box>
+            </view>
+            <view class="date">
+                <icon-font icon="icon-calendar-line" size="40rpx"></icon-font>
+                <view class="date-text">
+                    <view class="day">{{dateDay}}</view>
+                    <view class="time">{{dateTime}}</view>
+                </view>
+            </view>
+        </view>
+        <view class="center">
+            <view class="center-top" bind:tap="taggleShowCube">
+                <view class="disruption-icon">
+                    <icon-font icon="icon-grid" size="50rpx"></icon-font>
+                </view>
+                <view class="disruption-text"> {{record.disruption}} </view>
+                <view class="down-icon {{isShowCube && 'is-open'}}">
+                    <icon-font icon="icon-arrow_drop_down_circle_outlined" size="30rpx"></icon-font>
+                </view>
+            </view>
+            <view class="cube" wx:if="{{isShowCube}}">
+                <cube2d disruption="{{record.disruption}}}" />
+            </view>
+        </view>
+        <view class="bottom"> </view>
+    </view>
+</view>

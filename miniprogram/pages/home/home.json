@@ -4,7 +4,8 @@
         "tabbar": "/components/tabbar/tabbar",
         "timer-block": "/blocks/timer-block/timer-block",
         "record-block": "/blocks/record-block/record-block",
-        "statistic-block": "/blocks/statistic-block/statistic-block"
+        "statistic-block": "/blocks/statistic-block/statistic-block",
+        "record-popper": "/components/record-popper/record-popper"
     },
     "navigationStyle": "custom"
 }

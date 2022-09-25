@@ -1,0 +1,4 @@
+<text class="time-box">
+    <text class="left" style="font-size: {{size}}rpx;">{{leftPart}}</text>
+    <text class="right" style="font-size: {{size*0.75}}rpx;">{{rightPart}}</text>
+</text>
