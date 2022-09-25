@@ -8,7 +8,7 @@ Page({
     data: {
         currentTabIndex: 0,
         isHiddenSideBlock: true,
-        records: app.records,
+        records: app.records[app.cubeType][app.currentGroup],
         isShowRecordPopper: false,
         popperRecord: {},
     },
@@ -30,7 +30,7 @@ Page({
         console.log("add new record", e.detail.record);
         app.addRecord(e.detail.record);
         this.setData({
-            records: app.records,
+            records: app.records[app.cubeType][app.currentGroup],
         });
     },
     handelShowRecordPopper(e) {
@@ -48,5 +48,16 @@ Page({
             isShowRecordPopper: false,
         });
     },
+    handleDeleteRecordItem(e) {
+        console.log("deleteRecordItem", e.detail);
+        app.deleteRecord([e.detail.id]);
+        this.setData({
+            records: app.records[app.cubeType][app.currentGroup],
+        });
+        this.setData({
+            isShowRecordPopper: false,
+        });
+    },
+
     methods: {},
 });

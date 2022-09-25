@@ -26,6 +26,10 @@
                 <cube2d disruption="{{record.disruption}}}" />
             </view>
         </view>
-        <view class="bottom"> </view>
+        <view class="bottom">
+            <view class="delete-btn" bind:tap="onClickDeleteIcon" data-id="{{record.id}}">
+                <icon-font icon="icon-HTSCIT-delete" size="40rpx"></icon-font>
+            </view>
+        </view>
     </view>
 </view>

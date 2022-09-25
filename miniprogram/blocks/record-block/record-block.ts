@@ -3,7 +3,13 @@ const app = getApp<IAppOption>();
 
 Component({
     properties: {
-        records: Array,
+        records: {
+            type: Array,
+            value: [],
+            observer() {
+                console.log("records", this.data.records);
+            },
+        },
     },
     data: {
         showRecordDetail: true,
@@ -13,5 +19,7 @@ Component({
             this.triggerEvent("showRecordPopper", { record: e.currentTarget.dataset.record });
         },
     },
-    lifetimes: {},
+    lifetimes: {
+        attached() {},
+    },
 });

@@ -14,6 +14,6 @@
             </swiper-item>
         </swiper>
     </main>
-    <record-popper wx:if="{{isShowRecordPopper}}" record="{{popperRecord}}" bind:closeRecordPopper="handleCloseRecordPopper"></record-popper>
+    <record-popper wx:if="{{isShowRecordPopper}}" record="{{popperRecord}}" bind:closeRecordPopper="handleCloseRecordPopper" bind:deleteRecordItem="handleDeleteRecordItem"></record-popper>
     <tabbar tabindex="{{currentTabIndex}}" bind:onClickTab="handleClickTab"></tabbar>
 </view>

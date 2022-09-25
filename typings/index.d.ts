@@ -14,10 +14,14 @@ interface IAppOption {
     data: { mode: MODE };
     systemInfo: WechatMiniprogram.SystemInfo;
     menuButtonInfo: any;
-    records: Object[];
+    records: Object;
     handleChangeTest: () => void;
     addRecord: Function;
+    deleteRecord: Function;
     cache: Object;
+    cubeType: string;
+    groups: Object;
+    currentGroup: string;
 }
 
 interface IRecord {

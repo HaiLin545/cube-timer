@@ -7,16 +7,31 @@ App<IAppOption>({
     data: {
         mode: MODE.TIMER,
     },
-    records: [],
+    cubeType: "cube3",
+    currentGroup: "normal",
+    groups: {},
+    records: {
+        cube3: {
+            normal: [],
+        },
+    },
     systemInfo: wx.getSystemInfoSync(),
     menuButtonInfo: wx.getMenuButtonBoundingClientRect(),
     async onLaunch() {
-        this.records = (await getStorage("records")) ?? [];
+        this.records[this.cubeType] = (await getStorage(this.cubeType)) ?? {
+            normal: [],
+        };
     },
     handleChangeTest() {},
     addRecord(record: IRecord) {
-        this.records.unshift(record);
-        setStorageAsync("records", this.records);
+        this.records[this.cubeType][this.currentGroup].unshift(record);
+        setStorageAsync(this.cubeType, this.records[this.cubeType]);
+    },
+    deleteRecord(ids: []) {
+        this.records[this.cubeType][this.currentGroup] = this.records[this.cubeType][this.currentGroup].filter((record) => {
+            return !ids.includes(record.id);
+        });
+        setStorageAsync(this.cubeType, this.records[this.cubeType]);
     },
     cache: {},
 });

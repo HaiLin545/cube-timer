@@ -31,5 +31,8 @@ Component({
                 isShowCube: !this.data.isShowCube,
             });
         },
+        onClickDeleteIcon(e) {
+            this.triggerEvent("deleteRecordItem", { id: e.currentTarget.dataset.id });
+        },
     },
 });
