@@ -1,5 +1,5 @@
 <view class="timer-block">
-    <view class="top">
+    <view class="top" wx:if="{{timerState==='Off'}}">
         <view class="disruption">{{disruption}}</view>
         <view class="buttons">
             <view class="left">
@@ -19,9 +19,13 @@
     </view>
 
     <view class="clock" bind:tap="handleTap">
-        <time-box time="{{time}}" size="{{150}}"></time-box>
+        <view class="inspection" wx:if="{{timerState==='Inspecting'}}">
+            <view class="inspection-text">观察中</view>
+            <view class="time-left">{{timeLeft}}</view>
+        </view>
+        <time-box wx:else time="{{time}}" size="{{timerState==='Timing'?180:150}}"></time-box>
     </view>
-    <view class="tools">
+    <view class="tools" wx:if="{{timerState==='Off'}}">
         <view class="cube">
             <cube2d disruption="{{disruption}}" />
         </view>

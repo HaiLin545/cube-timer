@@ -1,10 +1,15 @@
 <!-- index.wxml -->
-<view class="home">
-    <header bind:onSetting="openSideBlock"></header>
+<view class="home {{timerState==='Off' && 'off-state'}}">
+    <header bind:onSetting="openSideBlock" wx:if="{{timerState==='Off'}}"></header>
     <main class="main">
         <swiper class="swiper" bind:change="handleTabChange" current="{{currentTabIndex}}" duration="300">
             <swiper-item class="swiper-item">
-                <timer-block bind:onAddRecord="onAddRecord"></timer-block>
+                <timer-block
+                    bind:onAddRecord="onAddRecord"
+                    timerState="{{timerState}}"
+                    enableInspection="{{enableInspection}}"
+                    bind:changeTimerState="onChangeTimerState"
+                ></timer-block>
             </swiper-item>
             <swiper-item class="swiper-item">
                 <record-block records="{{records}}" bind:showRecordPopper="handelShowRecordPopper"></record-block>
@@ -14,6 +19,11 @@
             </swiper-item>
         </swiper>
     </main>
-    <record-popper wx:if="{{isShowRecordPopper}}" record="{{popperRecord}}" bind:closeRecordPopper="handleCloseRecordPopper" bind:deleteRecordItem="handleDeleteRecordItem"></record-popper>
-    <tabbar tabindex="{{currentTabIndex}}" bind:onClickTab="handleClickTab"></tabbar>
+    <record-popper
+        wx:if="{{isShowRecordPopper}}"
+        record="{{popperRecord}}"
+        bind:closeRecordPopper="handleCloseRecordPopper"
+        bind:deleteRecordItem="handleDeleteRecordItem"
+    ></record-popper>
+    <tabbar wx:if="{{timerState==='Off'}}" tabindex="{{currentTabIndex}}" bind:onClickTab="handleClickTab"></tabbar>
 </view>

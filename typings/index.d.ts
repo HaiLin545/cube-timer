@@ -15,6 +15,7 @@ interface IAppOption {
     systemInfo: WechatMiniprogram.SystemInfo;
     menuButtonInfo: any;
     records: Object;
+    setting: Object;
     handleChangeTest: () => void;
     addRecord: Function;
     deleteRecord: Function;

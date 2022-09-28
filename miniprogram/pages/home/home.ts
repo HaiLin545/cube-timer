@@ -1,6 +1,6 @@
 // home.ts
 // 获取应用实例
-
+import { ITimerState } from "../../type";
 // @ts-ignore
 const app = getApp<IAppOption>();
 
@@ -10,6 +10,7 @@ Page({
         isHiddenSideBlock: true,
         records: app.records[app.cubeType][app.currentGroup],
         isShowRecordPopper: false,
+        timerState: ITimerState.Off,
         popperRecord: {},
     },
     handleTabChange(e: any) {
@@ -26,6 +27,12 @@ Page({
     },
     onLoad() {},
     onShow() {},
+    onChangeTimerState(e) {
+        const newState = e.detail.newState;
+        this.setData({
+            timerState: newState,
+        });
+    },
     onAddRecord(e: any) {
         console.log("add new record", e.detail.record);
         app.addRecord(e.detail.record);

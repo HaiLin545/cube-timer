@@ -9,7 +9,9 @@
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    padding-bottom: calc(@tabbar-height + env(safe-area-inset-bottom));
+    &.off-state {
+        padding-bottom: calc(@tabbar-height + env(safe-area-inset-bottom));
+    }
 }
 
 .main {
@@ -17,15 +19,4 @@
     .swiper {
         height: 100%;
     }
-}
-
-.record-popper {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    z-index: 2;
-    color: white;
-    background-color: black;
 }

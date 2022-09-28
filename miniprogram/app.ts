@@ -15,6 +15,9 @@ App<IAppOption>({
             normal: [],
         },
     },
+    setting: {
+        enableInspection: true,
+    },
     systemInfo: wx.getSystemInfoSync(),
     menuButtonInfo: wx.getMenuButtonBoundingClientRect(),
     async onLaunch() {
@@ -28,9 +31,11 @@ App<IAppOption>({
         setStorageAsync(this.cubeType, this.records[this.cubeType]);
     },
     deleteRecord(ids: []) {
-        this.records[this.cubeType][this.currentGroup] = this.records[this.cubeType][this.currentGroup].filter((record) => {
-            return !ids.includes(record.id);
-        });
+        this.records[this.cubeType][this.currentGroup] = this.records[this.cubeType][this.currentGroup].filter(
+            (record) => {
+                return !ids.includes(record.id);
+            }
+        );
         setStorageAsync(this.cubeType, this.records[this.cubeType]);
     },
     cache: {},

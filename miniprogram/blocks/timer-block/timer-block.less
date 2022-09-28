@@ -8,10 +8,9 @@
 
 .top {
     margin: 20rpx;
-
     .disruption {
         text-align: center;
-        line-height: 50rpx;
+        line-height: -50rpx;
         font-size: 36rpx;
     }
 
@@ -52,14 +51,19 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    .time-value {
-        transform: translateY(-50%);
-    }
-    .time-left {
-        font-size: 150rpx;
-    }
-    .time-right {
-        font-size: 120rpx;
+
+    .inspection {
+        position: relative;
+        .inspection-text {
+            position: absolute;
+            top: -80rpx;
+            width: 100%;
+            text-align: center;
+            font-size: 36rpx;
+        }
+        .time-left {
+            font-size: 180rpx;
+        }
     }
 }
 

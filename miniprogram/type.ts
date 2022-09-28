@@ -7,3 +7,9 @@ export enum MODE {
     FORMULA_OLL = "FORMULA_OLL",
     FORMULA_PLL = "FORMULA_PLL",
 }
+
+export enum ITimerState {
+    Off = "Off",
+    Inspecting = "Inspecting",
+    Timing = "Timing",
+}
