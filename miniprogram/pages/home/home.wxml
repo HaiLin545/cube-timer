@@ -11,10 +11,10 @@
                     bind:changeTimerState="onChangeTimerState"
                 ></timer-block>
             </swiper-item>
-            <swiper-item class="swiper-item">
+            <swiper-item class="swiper-item" wx:if="{{timerState==='Off'}}">
                 <record-block records="{{records}}" bind:showRecordPopper="handelShowRecordPopper"></record-block>
             </swiper-item>
-            <swiper-item class="swiper-item">
+            <swiper-item class="swiper-item" wx:if="{{timerState==='Off'}}">
                 <statistic-block></statistic-block>
             </swiper-item>
         </swiper>
@@ -24,6 +24,7 @@
         record="{{popperRecord}}"
         bind:closeRecordPopper="handleCloseRecordPopper"
         bind:deleteRecordItem="handleDeleteRecordItem"
-    ></record-popper>
+    >
+    </record-popper>
     <tabbar wx:if="{{timerState==='Off'}}" tabindex="{{currentTabIndex}}" bind:onClickTab="handleClickTab"></tabbar>
 </view>

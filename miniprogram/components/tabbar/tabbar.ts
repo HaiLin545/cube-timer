@@ -21,7 +21,6 @@ Component({
     },
     methods: {
         handleClickTab(e) {
-            console.log("点击tabbar图标", e.currentTarget.dataset.index);
             if (e.currentTarget.dataset.index !== this.data.tabindex) {
                 this.triggerEvent("onClickTab", e.currentTarget.dataset);
             }

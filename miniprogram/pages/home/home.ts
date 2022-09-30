@@ -14,7 +14,6 @@ Page({
         popperRecord: {},
     },
     handleTabChange(e: any) {
-        console.log("tabindex改变为", e.detail.current);
         this.setData({
             currentTabIndex: e.detail.current,
         });

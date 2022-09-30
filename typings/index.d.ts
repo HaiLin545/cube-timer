@@ -28,6 +28,7 @@ interface IAppOption {
 interface IRecord {
     date: Date;
     id: string;
-    score: string;
+    time: string;
     day: string;
+    isDNF: boolean;
 }

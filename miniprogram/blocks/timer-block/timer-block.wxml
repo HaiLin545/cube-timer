@@ -11,7 +11,7 @@
                 <view class="btn">
                     <icon-font class="btn" icon="icon-pencil-line" size="50rpx"></icon-font>
                 </view>
-                <view class="btn" bind:tap="onRefreshDisruption">
+                <view class="btn" bind:tap="updateDisruption">
                     <icon-font class="btn" icon="icon-cached" size="50rpx"></icon-font>
                 </view>
             </view>
@@ -20,10 +20,19 @@
 
     <view class="clock" bind:tap="handleTap">
         <view class="inspection" wx:if="{{timerState==='Inspecting'}}">
-            <view class="inspection-text">观察中</view>
-            <view class="time-left">{{timeLeft}}</view>
+            <view class="inspecting" wx:if="{{timeLeft>0}}">
+                <view class="inspection-text">观察中</view>
+                <view class="time-left">{{timeLeft}}</view>
+            </view>
+            <view class="time-out-tip" wx:else>{{timeOutTip}}</view>
         </view>
-        <time-box wx:else time="{{time}}" size="{{timerState==='Timing'?180:150}}"></time-box>
+        <time-box
+            wx:else
+            time="{{time}}"
+            size="{{timerState==='Timing'?180:150}}"
+            isDNF="{{timeOutTip==='DNF'}}"
+            isAdd2="{{timeOutTip==='+2'}}"
+        ></time-box>
     </view>
     <view class="tools" wx:if="{{timerState==='Off'}}">
         <view class="cube">

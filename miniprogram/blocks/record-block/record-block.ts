@@ -6,9 +6,6 @@ Component({
         records: {
             type: Array,
             value: [],
-            observer() {
-                console.log("records", this.data.records);
-            },
         },
     },
     data: {

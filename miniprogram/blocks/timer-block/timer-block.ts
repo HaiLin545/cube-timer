@@ -15,22 +15,21 @@ Component({
     },
     data: {
         time: 0,
-        timeLeft: 15,
+        timeLeft: app.setting.inspectionTime,
         timer: 0,
         isTiming: false,
         disruption: "",
+        timeOutTip: "",
     },
     lifetimes: {
         attached() {
-            this.setData({
-                disruption: this.generateDisruption(),
-            });
+            this.updateDisruption();
         },
     },
     observers: {},
     methods: {
         handleTap() {
-            console.log("Tap the timer");
+            console.log("Tap the timer", this.data.timeOutTip);
             let newState = null;
             if (this.data.timerState == ITimerState.Off) {
                 if (app.setting.enableInspection) {
@@ -42,6 +41,7 @@ Component({
                 }
             }
             if (this.data.timerState == ITimerState.Inspecting) {
+                clearInterval(this.data.timer);
                 this.startTiming();
                 newState = ITimerState.Timing;
             }
@@ -54,16 +54,31 @@ Component({
         startInspectiong() {
             console.log("start inspecting");
             this.setData({
-                timeLeft: 15,
+                timeLeft: app.setting.inspectionTime,
+                timeOutTip: "",
                 timer: setInterval(() => {
-                    if (this.data.timeLeft > 0) {
+                    if (this.data.timeLeft > 1) {
                         this.setData({
                             timeLeft: this.data.timeLeft - 1,
                         });
-                    } else {
+                    } else if (this.data.timeLeft === 1) {
                         this.setData({
-                            timeLeft: 0,
+                            timeLeft: this.data.timeLeft - 1,
+                            timeOutTip: "+2",
                         });
+                    } else if (this.data.timeLeft > -1) {
+                        this.setData({
+                            timeLeft: this.data.timeLeft - 1,
+                        });
+                    } else if (this.data.timeLeft === -1) {
+                        this.setData({
+                            timeOutTip: "DNF",
+                        });
+                        setTimeout(() => {
+                            this.triggerEvent("changeTimerState", { newState: ITimerState.Off });
+                            this.addRecord();
+                            clearTimeout(this.data.timer);
+                        }, 200);
                     }
                 }, 1000),
             });
@@ -84,19 +99,26 @@ Component({
         endTiming() {
             console.log("end timing");
             clearInterval(this.data.timer);
+            this.addRecord();
+            this.setData({
+                isTiming: false,
+                disruption: this.generateDisruption(),
+            });
+        },
+        addRecord(remark?: string) {
             const record_date = new Date();
+            console.log("time out tip", this.data.timeOutTip);
             this.triggerEvent("onAddRecord", {
                 record: {
                     date: record_date.toString(),
-                    score: this.data.time,
+                    time: this.data.time,
                     day: formatTimeTiny(record_date),
                     id: record_date.valueOf(),
                     disruption: this.data.disruption,
-                    remark: "",
+                    remark: remark ?? "",
+                    isDNF: this.data.timeOutTip === "DNF",
+                    isAdd2: this.data.timeOutTip === "+2",
                 },
-            });
-            this.setData({
-                isTiming: false,
             });
         },
         generateDisruption(len?: number): string {
@@ -122,12 +144,12 @@ Component({
                 lastIdx = newIdx;
                 currentLen++;
             }
-            console.log("generate new disruption", newDisruption);
             return newDisruption.join(" ");
         },
-        onRefreshDisruption() {
+        updateDisruption() {
             this.setData({
                 disruption: this.generateDisruption(),
+                // disruption: "F2 U' R' B' U' R2 B' L F D F2 U' R2 D2 R2 U L2 D' R2 D2",
             });
         },
     },

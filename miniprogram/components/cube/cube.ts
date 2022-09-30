@@ -44,7 +44,6 @@ Component({
             type: String,
             value: "",
             observer: function (newVal) {
-                console.log("disruption observer", newVal);
                 const originState = Object.keys(theme).map((key) => initFace(theme[key]));
                 this.setData({
                     u: originState[0],
@@ -74,8 +73,22 @@ Component({
                     [l[i].color, l[j].color, l[k].color] = tmp;
                     break;
                 case 2:
-                    [f[i].color, f[j].color, f[k].color, b[i].color, b[j].color, b[k].color] = [b[i].color, b[j].color, b[k].color, f[i].color, f[j].color, f[k].color];
-                    [r[i].color, r[j].color, r[k].color, l[i].color, l[j].color, l[k].color] = [l[i].color, l[j].color, l[k].color, r[i].color, r[j].color, r[k].color];
+                    [f[i].color, f[j].color, f[k].color, b[i].color, b[j].color, b[k].color] = [
+                        b[i].color,
+                        b[j].color,
+                        b[k].color,
+                        f[i].color,
+                        f[j].color,
+                        f[k].color,
+                    ];
+                    [r[i].color, r[j].color, r[k].color, l[i].color, l[j].color, l[k].color] = [
+                        l[i].color,
+                        l[j].color,
+                        l[k].color,
+                        r[i].color,
+                        r[j].color,
+                        r[k].color,
+                    ];
                     break;
                 case 3:
                     [f[i].color, f[j].color, f[k].color] = [l[i].color, l[j].color, l[k].color];
@@ -99,8 +112,22 @@ Component({
                     [u[i].color, u[j].color, u[k].color] = tmp;
                     break;
                 case 2:
-                    [f[i].color, f[j].color, f[k].color, b[k_].color, b[j_].color, b[i_].color] = [b[k_].color, b[j_].color, b[i_].color, f[i].color, f[j].color, f[k].color];
-                    [d[i].color, d[j].color, d[k].color, u[i].color, u[j].color, u[k].color] = [u[i].color, u[j].color, u[k].color, d[i].color, d[j].color, d[k].color];
+                    [f[i].color, f[j].color, f[k].color, b[k_].color, b[j_].color, b[i_].color] = [
+                        b[k_].color,
+                        b[j_].color,
+                        b[i_].color,
+                        f[i].color,
+                        f[j].color,
+                        f[k].color,
+                    ];
+                    [d[i].color, d[j].color, d[k].color, u[i].color, u[j].color, u[k].color] = [
+                        u[i].color,
+                        u[j].color,
+                        u[k].color,
+                        d[i].color,
+                        d[j].color,
+                        d[k].color,
+                    ];
                     break;
                 case 3:
                     [f[i].color, f[j].color, f[k].color] = [u[i].color, u[j].color, u[k].color];
@@ -126,14 +153,28 @@ Component({
                     [r[r_i].color, r[r_j].color, r[r_k].color] = tmp;
                     break;
                 case 2:
-                    [u[u_i].color, u[u_j].color, u[u_k].color, d[d_i].color, d[d_j].color, d[d_k].color] = [d[d_k].color, d[d_j].color, d[d_i].color, u[u_k].color, u[u_j].color, u[u_i].color];
-                    [r[r_i].color, r[r_j].color, r[r_k].color, l[l_i].color, l[l_j].color, l[l_k].color] = [l[l_k].color, l[l_j].color, l[l_i].color, r[r_k].color, r[r_j].color, r[r_i].color];
+                    [u[u_i].color, u[u_j].color, u[u_k].color, d[d_i].color, d[d_j].color, d[d_k].color] = [
+                        d[d_k].color,
+                        d[d_j].color,
+                        d[d_i].color,
+                        u[u_k].color,
+                        u[u_j].color,
+                        u[u_i].color,
+                    ];
+                    [r[r_i].color, r[r_j].color, r[r_k].color, l[l_i].color, l[l_j].color, l[l_k].color] = [
+                        l[l_k].color,
+                        l[l_j].color,
+                        l[l_i].color,
+                        r[r_k].color,
+                        r[r_j].color,
+                        r[r_i].color,
+                    ];
                     break;
                 case 3:
                     [u[u_i].color, u[u_j].color, u[u_k].color] = [r[r_i].color, r[r_j].color, r[r_k].color];
-                    [r[r_i].color, r[r_j].color, r[r_k].color] = [d[d_i].color, d[d_j].color, d[d_k].color];
+                    [r[r_i].color, r[r_j].color, r[r_k].color] = [d[d_k].color, d[d_j].color, d[d_i].color];
                     [d[d_i].color, d[d_j].color, d[d_k].color] = [l[l_i].color, l[l_j].color, l[l_k].color];
-                    [l[l_i].color, l[l_j].color, l[l_k].color] = tmp;
+                    [l[l_k].color, l[l_j].color, l[l_i].color] = tmp;
                     break;
             }
             return [u, f, r, l, b, d];

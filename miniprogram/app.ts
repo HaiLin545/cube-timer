@@ -17,6 +17,7 @@ App<IAppOption>({
     },
     setting: {
         enableInspection: true,
+        inspectionTime: 5,
     },
     systemInfo: wx.getSystemInfoSync(),
     menuButtonInfo: wx.getMenuButtonBoundingClientRect(),
