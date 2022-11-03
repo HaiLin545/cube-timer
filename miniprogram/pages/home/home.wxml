@@ -7,6 +7,7 @@
                 <timer-block
                     bind:onAddRecord="onAddRecord"
                     timerState="{{timerState}}"
+                    numbers="{{recordsStatistic}}"
                     enableInspection="{{enableInspection}}"
                     bind:changeTimerState="onChangeTimerState"
                     bind:updateCurrentRecord="handleUpdateRecord"

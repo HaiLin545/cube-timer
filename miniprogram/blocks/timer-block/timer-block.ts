@@ -12,6 +12,7 @@ Component({
             type: ITimerState,
             value: ITimerState.Off,
         },
+        numbers: Object,
     },
     data: {
         time: 0,
@@ -120,7 +121,6 @@ Component({
         },
         addRecord(remark?: string) {
             const record_date = new Date();
-            console.log("time out tip", this.data.timeOutTip);
             this.triggerEvent("onAddRecord", {
                 record: {
                     date: record_date.toString(),
@@ -131,7 +131,7 @@ Component({
                     remark: remark ?? "",
                     isDNF: this.data.timeOutTip === "DNF",
                     isAdd2: this.data.timeOutTip === "+2",
-                    isValid: this.data.timeOutTip !== "DNF",
+                    isValid: this.data.timeOutTip !== "DNF", // isValid 为false时表示：该记录观察超时且DNF
                 },
             });
         },

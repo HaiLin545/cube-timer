@@ -4,7 +4,9 @@ Component({
     properties: {
         record: {
             type: Object,
-            value: {},
+            value: {
+                time: 0,
+            },
             observer(newVal) {
                 const date = new Date(newVal.date);
                 this.setData({

@@ -57,6 +57,12 @@
         </view>
     </view>
     <view class="tools" wx:if="{{timerState==='Off'}}">
+        <view class="numbers">
+            <view class="num-item" wx:for="{{numbers}}" wx:for-index="key" wx:for-item="value" wx:key="key">
+                <text class="key">{{key + '：'}}</text>
+                <text class="value">{{value}}</text>
+            </view>
+        </view>
         <view class="cube">
             <cube2d disruption="{{disruption}}" />
         </view>
