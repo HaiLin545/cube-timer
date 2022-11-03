@@ -19,6 +19,9 @@
     </view>
     <view class="clock" bind:tap="handleTap">
         <view class="inspection" wx:if="{{timerState==='Inspecting'}}">
+            <view class="quit-btn" capture-catch:tap="quitInspection">
+                <icon-font icon="icon-close" size="50rpx"></icon-font>
+            </view>
             <view class="inspecting" wx:if="{{timeLeft>0}}">
                 <view class="inspection-text">观察中</view>
                 <view class="time-left">{{timeLeft}}</view>

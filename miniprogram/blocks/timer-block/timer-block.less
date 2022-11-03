@@ -72,6 +72,24 @@
         .time-out-tip {
             font-size: 180rpx;
         }
+        .quit-btn {
+            position: absolute;
+            top: -300rpx;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            width: 100rpx;
+            height: 100rpx;
+            background-color: rgba(255, 255, 255, 0.5);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 100%;
+            z-index: 20;
+            &:active {
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+        }
     }
 }
 

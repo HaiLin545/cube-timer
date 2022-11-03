@@ -217,5 +217,13 @@ Component({
                 },
             });
         },
+        quitInspection() {
+            clearInterval(this.data.timer);
+            this.triggerEvent("changeTimerState", { newState: ITimerState.Off });
+            this.setData({
+                time: 0,
+                disruption: this.generateDisruption(),
+            });
+        },
     },
 });
