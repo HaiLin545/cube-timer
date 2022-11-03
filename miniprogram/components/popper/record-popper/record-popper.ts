@@ -1,4 +1,4 @@
-import { formatTime, formatDay } from "../../utils/util";
+import { formatTime, formatDay } from "../../../utils/util";
 
 Component({
     properties: {
@@ -21,18 +21,16 @@ Component({
     },
     methods: {
         onClickWrapper() {
-            this.triggerEvent("closeRecordPopper");
+            this.triggerEvent("closePopper");
         },
-        onClickPopper() {
-            console.log("clickPopper");
-        },
+        onClickPopper() {},
         taggleShowCube() {
             this.setData({
                 isShowCube: !this.data.isShowCube,
             });
         },
-        onClickDeleteIcon(e) {
-            this.triggerEvent("deleteRecordItem", { id: e.currentTarget.dataset.id });
+        onClickIcon(e) {
+            this.triggerEvent("updateRecordItem", { id: e.currentTarget.dataset.id, opt: e.currentTarget.dataset.opt });
         },
     },
 });

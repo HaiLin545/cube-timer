@@ -17,7 +17,6 @@
             </view>
         </view>
     </view>
-
     <view class="clock" bind:tap="handleTap">
         <view class="inspection" wx:if="{{timerState==='Inspecting'}}">
             <view class="inspecting" wx:if="{{timeLeft>0}}">
@@ -31,8 +30,31 @@
             time="{{time}}"
             size="{{timerState==='Timing'?180:150}}"
             isDNF="{{timeOutTip==='DNF'}}"
-            isAdd2="{{timeOutTip==='+2'}}"
+            isAdd2="{{timeOutTip==='+2' && !isTiming}}"
         ></time-box>
+        <view class="operations">
+            <view class="operation-btn-group" wx:if="{{showOperation}}">
+                <view class="operation-btn" capture-catch:tap="recordOperation" data-opt="delete">
+                    <icon-font icon="icon-close" size="42rpx"></icon-font>
+                </view>
+                <view class="operation-btn" wx:if="{{isValid}}" capture-catch:tap="recordOperation" data-opt="dnf">
+                    <icon-font icon="icon-donotdisturb" size="42rpx"></icon-font>
+                </view>
+                <view class="operation-btn" wx:if="{{isValid}}" capture-catch:tap="recordOperation" data-opt="add2">
+                    <icon-font icon="icon-exposureplus2" size="42rpx"></icon-font>
+                </view>
+                <!-- <view class="operation-btn" capture-catch:tap="recordOperation" data-opt="comment">
+                    <icon-font icon="icon-comment" size="42rpx"></icon-font>
+                </view> -->
+            </view>
+            <view
+                class="back-operation"
+                wx:if="{{!showOperation && operationType!=''}}"
+                capture-catch:tap="handleBackOperation"
+            >
+                <icon-font icon="icon-line-070" size="40rpx"></icon-font>
+            </view>
+        </view>
     </view>
     <view class="tools" wx:if="{{timerState==='Off'}}">
         <view class="cube">

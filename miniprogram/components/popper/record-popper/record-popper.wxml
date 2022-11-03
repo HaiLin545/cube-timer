@@ -32,8 +32,26 @@
             </view>
         </view>
         <view class="bottom">
-            <view class="delete-btn" bind:tap="onClickDeleteIcon" data-id="{{record.id}}">
-                <icon-font icon="icon-HTSCIT-delete" size="40rpx"></icon-font>
+            <view class="btn" bind:tap="onClickIcon" data-id="{{record.id}}" data-opt="delete">
+                <icon-font icon="icon-HTSCIT-delete" size="42rpx"></icon-font>
+            </view>
+            <view
+                class="btn"
+                bind:tap="onClickIcon"
+                data-id="{{record.id}}"
+                data-opt="{{record.isDNF?'remove_dnf':'dnf'}}"
+                wx:if="{{record.isValid}}"
+            >
+                <icon-font icon="icon-donotdisturb" size="40rpx"></icon-font>
+            </view>
+            <view
+                class="btn"
+                bind:tap="onClickIcon"
+                data-id="{{record.id}}"
+                data-opt="{{record.isAdd2?'remove_add2':'add2'}}"
+                wx:if="{{record.isValid}}"
+            >
+                <icon-font icon="icon-exposureplus2" size="42rpx"></icon-font>
             </view>
         </view>
     </view>

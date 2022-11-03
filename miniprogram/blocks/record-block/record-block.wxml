@@ -12,7 +12,6 @@
             >
                 <time-box time="{{record.time}}" isDNF="{{record.isDNF}}" isAdd2="{{record.isAdd2}}"></time-box>
                 <view class="record-date">{{record.day}}</view>
-                <view class="add2" wx:if="{{record.isAdd2}}">+2</view>
             </view>
         </view>
     </view>

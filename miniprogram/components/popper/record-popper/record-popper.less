@@ -63,12 +63,14 @@
 }
 
 .bottom {
-    // height: 100rpx;
+    display: flex;
     padding: 20rpx 30rpx;
-    .delete-btn {
-        width: fit-content;
-        padding: 5rpx;
-        border-radius: 5rpx;
+    align-items: center;
+    justify-content: space-evenly;
+    .btn {
+        padding: 10rpx;
+        margin: 0 5rpx;
+        border-radius: 10rpx;
         &:active {
             background-color: rgba(0, 0, 0, 0.2);
         }

@@ -51,6 +51,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-direction: column;
 
     .inspection {
         width: fit-content;
@@ -72,9 +73,6 @@
             font-size: 180rpx;
         }
     }
-    .dnf {
-        font-size: 150rpx;
-    }
 }
 
 .tools,
@@ -85,4 +83,41 @@
 .cube {
     margin-bottom: 20rpx;
     padding: 10rpx;
+}
+
+.operations {
+    min-width: 200rpx;
+    height: 60rpx;
+    display: flex;
+    justify-content: center;
+    .operation-btn-group {
+        display: flex;
+        align-items: center;
+    }
+    .operation-btn {
+        z-index: 20;
+        width: 80rpx;
+        height: 80rpx;
+        text-align: center;
+        line-height: 80rpx;
+        border-radius: 100%;
+        margin: 0 10rpx;
+        &:active {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
+    .back-operation {
+        z-index: 20;
+        text-align: center;
+        padding: 5rpx;
+        width: 80rpx;
+        height: 80rpx;
+        border-radius: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        &:active {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
 }

@@ -41,6 +41,6 @@ export const getStorage = (key: string) => {
         console.log("getStorage success", key);
         return value;
     } catch (err) {
-        console.log("getStorage faile", key, err);
+        console.log("getStorage fail", key, err);
     }
 };

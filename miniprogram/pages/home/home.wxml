@@ -9,6 +9,7 @@
                     timerState="{{timerState}}"
                     enableInspection="{{enableInspection}}"
                     bind:changeTimerState="onChangeTimerState"
+                    bind:updateCurrentRecord="handleUpdateRecord"
                 ></timer-block>
             </swiper-item>
             <swiper-item class="swiper-item" wx:if="{{timerState==='Off'}}">
@@ -22,9 +23,16 @@
     <record-popper
         wx:if="{{isShowRecordPopper}}"
         record="{{popperRecord}}"
-        bind:closeRecordPopper="handleCloseRecordPopper"
-        bind:deleteRecordItem="handleDeleteRecordItem"
+        bind:closePopper="handleCloseRecordPopper"
+        bind:updateRecordItem="handleUpdateRecordItem"
     >
     </record-popper>
+    <confirm-popper
+        bind:closePopper="handleHideConfirmPopper"
+        wx:if="{{isShowConfirmPopper}}"
+        onConfirm="{{confirmCallback}}"
+        title="{{confirmPopperTitle}}"
+        okText="{{confirmPopperOkText}}"
+    ></confirm-popper>
     <tabbar wx:if="{{timerState==='Off'}}" tabindex="{{currentTabIndex}}" bind:onClickTab="handleClickTab"></tabbar>
 </view>

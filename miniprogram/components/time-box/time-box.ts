@@ -6,18 +6,35 @@ Component({
             type: Number,
             value: 0,
             observer(newVal) {
-                let newRight = this.getRightPart(newVal % 1000);
-                let newLeft = this.getLeftPart(newVal / 1000);
-                // console.log(newLeft, newRight);
-                this.setData({
-                    rightPart: newRight,
-                    leftPart: newLeft,
-                });
+                if (this.data.isAdd2) {
+                    this.setData({
+                        realTime: newVal + 2000,
+                    });
+                } else {
+                    this.setData({
+                        realTime: newVal,
+                    });
+                }
             },
         },
         isDNF: {
             type: Boolean,
             value: false,
+        },
+        isAdd2: {
+            type: Boolean,
+            value: false,
+            observer(newVal) {
+                if (newVal) {
+                    this.setData({
+                        realTime: this.data.time + 2000,
+                    });
+                } else {
+                    this.setData({
+                        realTime: this.data.time,
+                    });
+                }
+            },
         },
         size: {
             type: Number,
@@ -27,6 +44,17 @@ Component({
     data: {
         leftPart: "0",
         rightPart: ".00",
+        realTime: 0,
+    },
+    observers: {
+        realTime: function (newVal) {
+            let newRight = this.getRightPart(newVal % 1000);
+            let newLeft = this.getLeftPart(newVal / 1000);
+            this.setData({
+                rightPart: newRight,
+                leftPart: newLeft,
+            });
+        },
     },
     methods: {
         getRightPart(t: number) {

@@ -1,5 +1,5 @@
 import { formatTimeTiny } from "../../utils/util";
-import { ITimerState } from "../../type";
+import { ITimerState, IOPT } from "../../type";
 
 const app = getApp<IAppOption>();
 
@@ -20,6 +20,9 @@ Component({
         isTiming: false,
         disruption: "",
         timeOutTip: "",
+        showOperation: false,
+        operationType: "",
+        isValid: true,
     },
     lifetimes: {
         attached() {
@@ -56,6 +59,8 @@ Component({
             this.setData({
                 timeLeft: app.setting.inspectionTime,
                 timeOutTip: "",
+                operationType: "",
+                showOperation: false,
                 timer: setInterval(() => {
                     if (this.data.timeLeft > 1) {
                         this.setData({
@@ -73,6 +78,9 @@ Component({
                     } else if (this.data.timeLeft === -1) {
                         this.setData({
                             timeOutTip: "DNF",
+                            isTiming: false,
+                            showOperation: true,
+                            isValid: false,
                         });
                         setTimeout(() => {
                             this.triggerEvent("changeTimerState", { newState: ITimerState.Off });
@@ -89,6 +97,9 @@ Component({
             this.setData({
                 isTiming: true,
                 time: 0,
+                showOperation: false,
+                timeOutTip: "",
+                operationType: "",
                 timer: setInterval(() => {
                     this.setData({
                         time: this.data.time + 10,
@@ -97,13 +108,15 @@ Component({
             });
         },
         endTiming() {
-            console.log("end timing");
             clearInterval(this.data.timer);
-            this.addRecord();
+            console.log("end timing, time:", this.data.time);
             this.setData({
                 isTiming: false,
+                showOperation: true,
+                isValid: this.data.timeOutTip !== "DNF",
                 disruption: this.generateDisruption(),
             });
+            this.addRecord();
         },
         addRecord(remark?: string) {
             const record_date = new Date();
@@ -118,6 +131,7 @@ Component({
                     remark: remark ?? "",
                     isDNF: this.data.timeOutTip === "DNF",
                     isAdd2: this.data.timeOutTip === "+2",
+                    isValid: this.data.timeOutTip !== "DNF",
                 },
             });
         },
@@ -150,6 +164,57 @@ Component({
             this.setData({
                 disruption: this.generateDisruption(),
                 // disruption: "F2 U' R' B' U' R2 B' L F D F2 U' R2 D2 R2 U L2 D' R2 D2",
+            });
+        },
+        recordOperation(e) {
+            const opt = e.currentTarget.dataset.opt;
+            let callback = () => {};
+            switch (opt) {
+                case "delete":
+                    callback = () => {
+                        this.setData({
+                            time: 0,
+                            timeOutTip: "",
+                            showOperation: false,
+                        });
+                    };
+                    break;
+                case "dnf":
+                    callback = () => {
+                        this.setData({
+                            timeOutTip: "DNF",
+                            showOperation: false,
+                            operationType: "remove_dnf",
+                        });
+                    };
+                    break;
+                case "add2":
+                    callback = () => {
+                        this.setData({
+                            timeOutTip: "+2",
+                            showOperation: false,
+                            operationType: "remove_add2",
+                        });
+                    };
+                    break;
+                case "comment":
+                    break;
+            }
+            this.triggerEvent("updateCurrentRecord", {
+                opt,
+                callback,
+            });
+        },
+        handleBackOperation() {
+            this.triggerEvent("updateCurrentRecord", {
+                opt: this.data.operationType,
+                callback: () => {
+                    this.setData({
+                        timeOutTip: "",
+                        showOperation: true,
+                        operationType: "",
+                    });
+                },
             });
         },
     },
