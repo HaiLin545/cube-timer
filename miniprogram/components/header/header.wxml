@@ -1,14 +1,14 @@
 <view class="header" style="padding-top: {{statusBarHeight}}px; height: {{headerHeight}}px;">
-    <view class="left">
+    <!-- <view class="left">
         <icon-font class="setting-icon" icon="icon-settings-4-line" size="50rpx" bind:tap="handleTapSetting">
         </icon-font>
         <icon-font class="group-icon" icon="icon-bx-category-alt" size="50rpx" bind:tap="handleTapGroup"></icon-font>
-    </view>
+    </view> -->
     <view class="cube-and-group" bind:tap="handleSwitchGroup">
         <view class="cube-type">
             <view class="cube-type-name">{{cubeType}}</view>
-            <icon-font class="switch-group-icon" icon="icon-arrowdown" size="30rpx"></icon-font>
+            <!-- <icon-font class="switch-group-icon" icon="icon-arrowdown" size="30rpx"></icon-font> -->
         </view>
-        <view class="current-group">{{currentGroup}}</view>
+        <!-- <view class="current-group">{{currentGroup}}</view> -->
     </view>
 </view>

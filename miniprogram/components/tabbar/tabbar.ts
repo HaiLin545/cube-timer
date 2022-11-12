@@ -14,9 +14,9 @@ Component({
             {
                 icon: "icon-list-check",
             },
-            {
-                icon: "icon-line-chart-line",
-            },
+            // {
+            //     icon: "icon-line-chart-line",
+            // },
         ],
     },
     methods: {

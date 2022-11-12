@@ -3,14 +3,14 @@
         <view class="disruption">{{disruption}}</view>
         <view class="buttons">
             <view class="left">
-                <view class="btn">
+                <!-- <view class="btn">
                     <icon-font icon="icon-add-circle-line" size="50rpx"></icon-font>
-                </view>
+                </view> -->
             </view>
             <view class="right">
-                <view class="btn">
+                <!-- <view class="btn">
                     <icon-font class="btn" icon="icon-pencil-line" size="50rpx"></icon-font>
-                </view>
+                </view> -->
                 <view class="btn" bind:tap="updateDisruption">
                     <icon-font class="btn" icon="icon-cached" size="50rpx"></icon-font>
                 </view>
