@@ -7,13 +7,10 @@ App<IAppOption>({
     data: {
         mode: MODE.TIMER,
     },
-    cubeType: "cube3",
     currentGroup: "normal",
     groups: {},
     records: {
-        cube3: {
-            normal: [],
-        },
+        normal: [],
     },
     setting: {
         enableInspection: true,
@@ -22,58 +19,56 @@ App<IAppOption>({
     systemInfo: wx.getSystemInfoSync(),
     menuButtonInfo: wx.getMenuButtonBoundingClientRect(),
     async onLaunch() {
-        this.records[this.cubeType] = (await getStorage(this.cubeType)) ?? {
+        this.records = (await getStorage(this.currentGroup)) ?? {
             normal: [],
         };
     },
     handleChangeTest() {},
     addRecord(record: IRecord) {
-        this.records[this.cubeType][this.currentGroup].unshift(record);
-        setStorageAsync(this.cubeType, this.records[this.cubeType]);
+        this.records[this.currentGroup].unshift(record);
+        setStorageAsync(this.currentGroup, this.records);
     },
     deleteRecord(ids: []) {
-        this.records[this.cubeType][this.currentGroup] = this.records[this.cubeType][this.currentGroup].filter(
-            (record) => {
-                return !ids.includes(record.id);
-            }
-        );
-        setStorageAsync(this.cubeType, this.records[this.cubeType]);
+        this.records[this.currentGroup] = this.records[this.currentGroup].filter((record) => {
+            return !ids.includes(record.id);
+        });
+        setStorageAsync(this.currentGroup, this.records);
     },
     deleteCurrentRecord() {
-        this.records[this.cubeType][this.currentGroup].shift();
-        setStorageAsync(this.cubeType, this.records[this.cubeType]);
+        this.records[this.currentGroup].shift();
+        setStorageAsync(this.currentGroup, this.records);
     },
-    updateRecord(id, newVal) {
-        const tot = this.records[this.cubeType][this.currentGroup].length;
+    updateRecord(id: number, newVal: Object) {
+        const tot = this.records[this.currentGroup].length;
         for (let i = 0; i < tot; i++) {
-            if (id === this.records[this.cubeType][this.currentGroup][i].id) {
-                this.records[this.cubeType][this.currentGroup][i] = {
-                    ...this.records[this.cubeType][this.currentGroup][i],
+            if (id === this.records[this.currentGroup][i].id) {
+                this.records[this.currentGroup][i] = {
+                    ...this.records[this.currentGroup][i],
                     ...newVal,
                 };
             }
         }
-        setStorageAsync(this.cubeType, this.records[this.cubeType]);
+        setStorageAsync(this.currentGroup, this.records);
     },
     updateCurrentRecord(opt: IOPT) {
         switch (opt) {
             case IOPT.ADD2:
-                this.records[this.cubeType][this.currentGroup][0].isAdd2 = true;
+                this.records[this.currentGroup][0].isAdd2 = true;
                 break;
             case IOPT.DNF:
-                this.records[this.cubeType][this.currentGroup][0].isDNF = true;
+                this.records[this.currentGroup][0].isDNF = true;
                 break;
             case IOPT.REMOVE_ADD2:
-                this.records[this.cubeType][this.currentGroup][0].isAdd2 = false;
+                this.records[this.currentGroup][0].isAdd2 = false;
                 break;
             case IOPT.REMOVE_DNF:
-                this.records[this.cubeType][this.currentGroup][0].isDNF = false;
-                this.records[this.cubeType][this.currentGroup][0].isAdd2 = false;
+                this.records[this.currentGroup][0].isDNF = false;
+                this.records[this.currentGroup][0].isAdd2 = false;
                 break;
             default:
                 break;
         }
-        setStorageAsync(this.cubeType, this.records[this.cubeType]);
+        setStorageAsync(this.currentGroup, this.records);
     },
     cache: {},
 });

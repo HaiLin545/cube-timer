@@ -166,7 +166,7 @@ Component({
                 // disruption: "F2 U' R' B' U' R2 B' L F D F2 U' R2 D2 R2 U L2 D' R2 D2",
             });
         },
-        recordOperation(e) {
+        recordOperation(e: WechatMiniprogram.CustomEvent) {
             const opt = e.currentTarget.dataset.opt;
             let callback = () => {};
             switch (opt) {

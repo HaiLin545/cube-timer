@@ -9,7 +9,7 @@ Component({
     data: {
         currentTabIndex: 0,
         isHiddenSideBlock: true,
-        records: app.records[app.cubeType][app.currentGroup],
+        records: app.records[app.currentGroup],
         isShowRecordPopper: false,
         isShowConfirmPopper: false,
         timerState: ITimerState.Off,
@@ -17,7 +17,7 @@ Component({
         confirmCallback: () => {},
         confirmPopperTitle: "确定删除成绩？",
         confirmPopperOkText: "删除",
-        recordsStatistic: getStatistic(app.records[app.cubeType][app.currentGroup]),
+        recordsStatistic: getStatistic(app.records[app.currentGroup]),
     },
     lifetimes: {},
     observers: {
@@ -28,30 +28,30 @@ Component({
         },
     },
     methods: {
-        handleTabChange(e: any) {
+        handleTabChange(e: WechatMiniprogram.CustomEvent) {
             this.setData({
                 currentTabIndex: e.detail.current,
             });
         },
-        handleClickTab(e: any) {
+        handleClickTab(e: WechatMiniprogram.TouchEvent) {
             this.setData({
                 currentTabIndex: e.detail.index,
             });
         },
-        onChangeTimerState(e) {
+        onChangeTimerState(e: WechatMiniprogram.CustomEvent) {
             const newState = e.detail.newState;
             this.setData({
                 timerState: newState,
             });
         },
-        onAddRecord(e: any) {
+        onAddRecord(e: WechatMiniprogram.CustomEvent) {
             console.log("add new record", e.detail.record);
             app.addRecord(e.detail.record);
             this.setData({
-                records: app.records[app.cubeType][app.currentGroup],
+                records: app.records[app.currentGroup],
             });
         },
-        handelShowRecordPopper(e) {
+        handelShowRecordPopper(e: WechatMiniprogram.CustomEvent) {
             this.setData({
                 popperRecord: e.detail.record,
                 isShowRecordPopper: true,
@@ -68,7 +68,7 @@ Component({
             });
         },
 
-        handleUpdateRecordItem(e) {
+        handleUpdateRecordItem(e: WechatMiniprogram.CustomEvent) {
             const { id, opt } = e.detail;
             switch (opt) {
                 case IOPT.DELETE:
@@ -86,11 +86,11 @@ Component({
                     break;
             }
             this.setData({
-                records: app.records[app.cubeType][app.currentGroup],
+                records: app.records[app.currentGroup],
                 isShowRecordPopper: false,
             });
         },
-        handleUpdateRecord(e) {
+        handleUpdateRecord(e: WechatMiniprogram.CustomEvent) {
             const opt = e.detail.opt;
             switch (opt) {
                 case IOPT.DELETE:
@@ -99,7 +99,7 @@ Component({
                         confirmCallback: () => {
                             app.deleteCurrentRecord();
                             this.setData({
-                                records: app.records[app.cubeType][app.currentGroup],
+                                records: app.records[app.currentGroup],
                             });
                             e.detail.callback();
                         },
@@ -108,15 +108,15 @@ Component({
                 case IOPT.DNF:
                     app.updateCurrentRecord(IOPT.DNF);
                     this.setData({
-                        records: app.records[app.cubeType][app.currentGroup],
+                        records: app.records[app.currentGroup],
                     });
                     e.detail.callback();
                     break;
                 case IOPT.ADD2:
-                    if (app.records[app.cubeType][app.currentGroup][0].isAdd2 === false) {
+                    if (app.records[app.currentGroup][0].isAdd2 === false) {
                         app.updateCurrentRecord(IOPT.ADD2);
                         this.setData({
-                            records: app.records[app.cubeType][app.currentGroup],
+                            records: app.records[app.currentGroup],
                         });
                     }
                     e.detail.callback();
@@ -124,14 +124,14 @@ Component({
                 case IOPT.REMOVE_DNF:
                     app.updateCurrentRecord(IOPT.REMOVE_DNF);
                     this.setData({
-                        records: app.records[app.cubeType][app.currentGroup],
+                        records: app.records[app.currentGroup],
                     });
                     e.detail.callback();
                     break;
                 case IOPT.REMOVE_ADD2:
                     app.updateCurrentRecord(IOPT.REMOVE_ADD2);
                     this.setData({
-                        records: app.records[app.cubeType][app.currentGroup],
+                        records: app.records[app.currentGroup],
                     });
                     e.detail.callback();
                     break;

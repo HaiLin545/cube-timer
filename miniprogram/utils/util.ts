@@ -1,9 +1,9 @@
-function msToS(ms, fixedBit = 2) {
+function msToS(ms: number, fixedBit = 2) {
     // @TODO: min, hour
     return (ms / 1000).toFixed(fixedBit);
 }
 
-export const getStatistic = (records) => {
+export const getStatistic = (records: IRecord[]) => {
     const MAX_TIME = 1e10;
     let Count = records.length, // 成绩次数
         Avg = "--", // 所有成绩平均值

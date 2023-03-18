@@ -12,7 +12,7 @@ Component({
         showRecordDetail: true,
     },
     methods: {
-        onClickRecordItem(e) {
+        onClickRecordItem(e: WechatMiniprogram.TouchEvent) {
             this.triggerEvent("showRecordPopper", { record: e.currentTarget.dataset.record });
         },
     },

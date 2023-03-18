@@ -10,9 +10,9 @@ Component({
     },
     methods: {
         handleTapSetting() {
-            // wx.navigateTo({
-            //     url: "/pages/user/user",
-            // });
+            wx.navigateTo({
+                url: "/pages/user/user",
+            });
         },
         handleSwitchGroup() {},
     },
