@@ -69,5 +69,9 @@ App<IAppOption>({
         }
         setStorageAsync(this.currentGroup, this.records);
     },
+    clearRecord(){
+        this.records[this.currentGroup] = [];
+        setStorageAsync(this.currentGroup, this.records);
+    },
     cache: {},
 });

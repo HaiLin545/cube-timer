@@ -14,6 +14,7 @@ interface IAppOption {
     updateRecord: Function;
     deleteCurrentRecord: Function;
     updateCurrentRecord: Function;
+    clearRecord: Function;
     cache: Object;
     groups: Object;
     currentGroup: string;

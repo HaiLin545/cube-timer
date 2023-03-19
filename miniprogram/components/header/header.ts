@@ -2,8 +2,11 @@
 const app = getApp<IAppOption>();
 
 Component({
+    properties: {
+        currentTabIndex: Number,
+        recordLength: Number,
+    },
     data: {
-        cubeType: "三阶魔方",
         currentGroup: "normal",
         statusBarHeight: app.systemInfo.statusBarHeight,
         headerHeight: 2 * (app.menuButtonInfo.top - app.systemInfo.statusBarHeight) + app.menuButtonInfo.height,
@@ -15,5 +18,9 @@ Component({
             });
         },
         handleSwitchGroup() {},
+        handleClearGroup() {
+            console.log("record length", this.properties.recordLength);
+            this.triggerEvent("clearGroup");
+        },
     },
 });

@@ -1,6 +1,12 @@
 <!-- index.wxml -->
 <view class="home {{timerState==='Off' && 'off-state'}}">
-    <header bind:onSetting="openSideBlock" wx:if="{{timerState==='Off'}}"></header>
+    <header
+        bind:onSetting="openSideBlock"
+        currentTabIndex="{{currentTabIndex}}"
+        recordLength="{{records.length}}"
+        bind:clearGroup="onClearGroup"
+        wx:if="{{timerState==='Off'}}"
+    ></header>
     <main class="main">
         <swiper class="swiper" bind:change="handleTabChange" current="{{currentTabIndex}}" duration="300">
             <swiper-item class="swiper-item">

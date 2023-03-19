@@ -11,12 +11,12 @@ Component({
         isHiddenSideBlock: true,
         records: app.records[app.currentGroup],
         isShowRecordPopper: false,
-        isShowConfirmPopper: false,
         timerState: ITimerState.Off,
         popperRecord: {},
-        confirmCallback: () => {},
+        isShowConfirmPopper: false,
         confirmPopperTitle: "确定删除成绩？",
         confirmPopperOkText: "删除",
+        confirmCallback: () => {},
         recordsStatistic: getStatistic(app.records[app.currentGroup]),
     },
     lifetimes: {},
@@ -67,7 +67,6 @@ Component({
                 isShowConfirmPopper: false,
             });
         },
-
         handleUpdateRecordItem(e: WechatMiniprogram.CustomEvent) {
             const { id, opt } = e.detail;
             switch (opt) {
@@ -138,6 +137,19 @@ Component({
                 case "comment":
                     break;
             }
+        },
+        onClearGroup() {
+            this.setData({
+                isShowConfirmPopper: true,
+                confirmPopperTitle: "确定清空该组所有记录?",
+                confirmPopperOkText: "确定",
+                confirmCallback: () => {
+                    app.clearRecord();
+                    this.setData({
+                        records: app.records[app.currentGroup],
+                    });
+                },
+            });
         },
     },
 });
