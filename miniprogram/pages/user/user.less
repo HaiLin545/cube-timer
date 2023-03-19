@@ -75,18 +75,8 @@
             font-size: 30rpx;
             line-height: 0;
         }
-        .arrow-down {
-            margin-left: auto;
-            margin-right: 30rpx;
-            &.is-open {
-                transform: rotate(180deg);
-            }
-        }
         &:active {
             background-color: rgba(0, 0, 0, 0.1);
-        }
-        &.current-mode {
-            background-color: #cde1fd;
         }
     }
 
@@ -98,21 +88,3 @@
     }
 }
 
-.child-entry-list {
-    overflow: hidden;
-    height: 0;
-    .child-entry-item {
-        height: 70rpx;
-        margin: 10rpx 30rpx;
-        .child-entry-icon {
-            margin-left: 150rpx;
-        }
-        opacity: 0;
-        &.is-open {
-            opacity: 1;
-        }
-    }
-    &.is-open {
-        height: 180rpx;
-    }
-}

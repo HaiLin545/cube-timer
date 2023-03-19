@@ -14,22 +14,19 @@
         <view wx:for="{{entryList}}" wx:key="title" wx:for-item="entry">
             <view wx:if="{{index > 0 &&index %3 ===0}}" class="separate-line"></view>
             <view
-                class="entry-item {{currentMode===entry.mode ? 'current-mode' : ''}}"
+                class="entry-item"
                 bind:tap="handleTapEntry"
-                data-type="{{entry.mode || entry.link}}"
                 data-index="{{index}}"
             >
                 <icon-font
                     catch:tap="handleTapEntry"
                     data-index="{{index}}"
-                    data-type="{{entry.mode || entry.link}}"
                     icon="{{entry.icon}}"
                     class="entry-icon"
                     size="50rpx"
                 ></icon-font>
                 <text
                     catch:tap="handleTapEntry"
-                    data-type="{{entry.mode || entry.link}}"
                     data-index="{{index}}"
                     class="entry-title"
                 >
@@ -37,7 +34,6 @@
                 </text>
                 <icon-font
                     catch:tap="handleTapEntry"
-                    data-type="{{entry.mode || entry.link}}"
                     data-index="{{index}}"
                     wx:if="{{entry.isComposed}}"
                     icon="icon-arrowdown"
@@ -45,38 +41,6 @@
                     style="transition: {{delayTransition?'300ms': '0' }} ease;"
                     size="40rpx"
                 ></icon-font>
-            </view>
-            <view
-                wx:if="{{entry.isComposed}}"
-                class="child-entry-list {{entry.isOpen?'is-open': ''}}"
-                style="transition: {{delayTransition?'300ms':'0'}} ease;"
-            >
-                <view
-                    class="entry-item child-entry-item {{entry.isOpen?'is-open': ''}} {{currentMode===childEntry.mode ? 'current-mode' : ''}}"
-                    wx:for="{{entry.childEntryList}}"
-                    wx:for-item="childEntry"
-                    wx:key="mode"
-                    bind:tap="handleTapEntry"
-                    data-type="{{childEntry.mode}}"
-                    data-index="{{index}}"
-                >
-                    <icon-font
-                        catch:tap="handleTapEntry"
-                        data-type="{{childEntry.mode}}"
-                        data-index="{{index}}"
-                        icon="{{childEntry.icon}}"
-                        class="entry-icon child-entry-icon"
-                        size="40rpx"
-                    ></icon-font>
-                    <text
-                        catch:tap="handleTapEntry"
-                        data-type="{{childEntry.mode}}"
-                        data-index="{{index}}"
-                        class="entry-title child-entry-title"
-                    >
-                        {{childEntry.title}}
-                    </text>
-                </view>
             </view>
         </view>
     </view>

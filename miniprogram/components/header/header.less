@@ -15,31 +15,22 @@
         }
     }
 
-    .cube-and-group {
+    .group {
         display: flex;
-        flex-direction: column;
         align-items: center;
-        padding: 0 50rpx;
-        .cube-type {
-            width: fit-content;
-            position: relative;
-            .cube-type-name {
-                display: inline-block;
-                font-size: 34rpx;
-            }
-            .switch-group-icon {
-                position: absolute;
-                right: -40rpx;
-                bottom: -5rpx;
-            }
-        }
+        padding: 0 20rpx;
+
         .current-group {
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            color: rgba(0, 0, 0, 0.6);
-            font-size: 25rpx;
+            font-size: 32rpx;
         }
+
+        .switch-group-icon {
+            margin-left: 20rpx;
+        }
+
         &:active {
             background-color: rgba(0, 0, 0, 0.2);
         }

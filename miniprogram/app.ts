@@ -1,11 +1,10 @@
 // app.ts
 // App<IAppOption>({
-import { MODE, IOPT } from "./type";
+import { IOPT } from "./type";
 import { getStorage, setStorage, setStorageAsync } from "./utils/cache";
 
 App<IAppOption>({
     data: {
-        mode: MODE.TIMER,
     },
     currentGroup: "normal",
     groups: {},
