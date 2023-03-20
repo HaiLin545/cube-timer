@@ -1,16 +1,16 @@
 // app.ts
 // App<IAppOption>({
 import { IOPT } from "./type";
-import { getStorage, setStorage, setStorageAsync } from "./utils/cache";
+import { getStorage, setStorageAsync, getRecordsStorage, deleteStorageAsync } from "./utils/cache";
 
 App<IAppOption>({
     data: {
+        loaded: false,
     },
-    currentGroup: "normal",
-    groups: {},
-    records: {
-        normal: [],
-    },
+    cache: {},
+    currentGroup: "",
+    groups: [],
+    records: {},
     setting: {
         enableInspection: true,
         inspectionTime: 15,
@@ -18,24 +18,31 @@ App<IAppOption>({
     systemInfo: wx.getSystemInfoSync(),
     menuButtonInfo: wx.getMenuButtonBoundingClientRect(),
     async onLaunch() {
-        this.records = (await getStorage(this.currentGroup)) ?? {
-            normal: [],
-        };
+        this.groups = getStorage("groups") ?? ["normal"];
+        this.currentGroup = getStorage("currentGroup") ?? this.groups[0];
+        const storage = await getRecordsStorage(this.groups);
+        storage.forEach((value, idx) => {
+            this.records[this.groups[idx]] = value as IRecord[];
+        });
+        console.log(this.groups, this.currentGroup, this.records);
+        this.data.loaded = true;
+        this.onLoadData();
     },
+    onLoadData() {},
     handleChangeTest() {},
     addRecord(record: IRecord) {
         this.records[this.currentGroup].unshift(record);
-        setStorageAsync(this.currentGroup, this.records);
+        setStorageAsync(this.currentGroup, this.records[this.currentGroup]);
     },
     deleteRecord(ids: []) {
         this.records[this.currentGroup] = this.records[this.currentGroup].filter((record) => {
-            return !ids.includes(record.id);
+            return !ids.includes(record.id as never);
         });
-        setStorageAsync(this.currentGroup, this.records);
+        setStorageAsync(this.currentGroup, this.records[this.currentGroup]);
     },
     deleteCurrentRecord() {
         this.records[this.currentGroup].shift();
-        setStorageAsync(this.currentGroup, this.records);
+        setStorageAsync(this.currentGroup, this.records[this.currentGroup]);
     },
     updateRecord(id: number, newVal: Object) {
         const tot = this.records[this.currentGroup].length;
@@ -47,7 +54,7 @@ App<IAppOption>({
                 };
             }
         }
-        setStorageAsync(this.currentGroup, this.records);
+        setStorageAsync(this.currentGroup, this.records[this.currentGroup]);
     },
     updateCurrentRecord(opt: IOPT) {
         switch (opt) {
@@ -67,11 +74,55 @@ App<IAppOption>({
             default:
                 break;
         }
-        setStorageAsync(this.currentGroup, this.records);
+        setStorageAsync(this.currentGroup, this.records[this.currentGroup]);
     },
-    clearRecord(){
+    clearRecord() {
         this.records[this.currentGroup] = [];
-        setStorageAsync(this.currentGroup, this.records);
+        setStorageAsync(this.currentGroup, this.records[this.currentGroup]);
     },
-    cache: {},
+    changeGroup(idx: number) {
+        this.currentGroup = this.groups[idx];
+    },
+    addGroup(name: string): boolean {
+        if (this.groups.includes(name)) {
+            return false;
+        }
+        this.groups.unshift(name);
+        this.records[name] = [];
+        this.currentGroup = name;
+        console.log(this.groups, this.records[name], name, this.currentGroup);
+        setStorageAsync(name, this.records[name]);
+        return true;
+    },
+    updateGroupName(idx: number, name: string) {
+        console.log("updateGroupName", idx, name);
+        // 重命名为已存在的名字,合并两组的数据
+        if (this.groups.includes(name)) {
+            const oldName = this.groups[idx];
+            this.records[name] = [...this.records[name], ...this.records[oldName]];
+            this.deleteGroup(idx);
+            this.currentGroup = name;
+        } else {
+            const oldName = this.groups[idx];
+            if (oldName == this.currentGroup) {
+                this.currentGroup = name;
+            }
+            this.records[name] = this.records[oldName];
+            this.groups[idx] = name;
+            deleteStorageAsync(oldName);
+            delete this.records[oldName];
+        }
+        setStorageAsync("groups", this.groups);
+        setStorageAsync(name, this.records[name]);
+    },
+    deleteGroup(idx: number) {
+        console.log("delete group", idx, name, this.groups);
+        const name = this.groups[idx];
+        this.groups = this.groups.filter((value) => value != name);
+        deleteStorageAsync(name);
+        delete this.records[name];
+        if (name == this.currentGroup) {
+            this.currentGroup = this.groups[0];
+        }
+    },
 });

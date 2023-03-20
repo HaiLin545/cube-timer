@@ -1,13 +1,19 @@
 /// <reference path="./types/index.d.ts" />
 
 interface IAppOption {
-    data: {  };
+    data: {
+        loaded: boolean;
+    };
     systemInfo: WechatMiniprogram.SystemInfo;
     menuButtonInfo: any;
     records: {
         [group: string]: Array<IRecord>;
     };
     setting: ISetting;
+    cache: Object;
+    groups: Array<string>;
+    currentGroup: string;
+    onLoadData: Function;
     handleChangeTest: () => void;
     addRecord: Function;
     deleteRecord: Function;
@@ -15,9 +21,10 @@ interface IAppOption {
     deleteCurrentRecord: Function;
     updateCurrentRecord: Function;
     clearRecord: Function;
-    cache: Object;
-    groups: Object;
-    currentGroup: string;
+    changeGroup: Function;
+    addGroup: Function;
+    updateGroupName: Function;
+    deleteGroup: Function;
 }
 
 interface IRecord {
@@ -30,8 +37,7 @@ interface IRecord {
     isValid: boolean;
 }
 
-
-interface ISetting{
+interface ISetting {
     enableInspection: boolean;
     inspectionTime: number;
 }

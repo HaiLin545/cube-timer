@@ -5,9 +5,9 @@ Component({
     properties: {
         currentTabIndex: Number,
         recordLength: Number,
+        currentGroup: String,
     },
     data: {
-        currentGroup: "normal",
         statusBarHeight: app.systemInfo.statusBarHeight,
         headerHeight: 2 * (app.menuButtonInfo.top - app.systemInfo.statusBarHeight) + app.menuButtonInfo.height,
     },
@@ -17,9 +17,10 @@ Component({
                 url: "/pages/user/user",
             });
         },
-        handleSwitchGroup() {},
+        handleSwitchGroup() {
+            this.triggerEvent("showGroupPopper");
+        },
         handleClearGroup() {
-            console.log("record length", this.properties.recordLength);
             this.triggerEvent("clearGroup");
         },
     },

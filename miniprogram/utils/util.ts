@@ -4,6 +4,7 @@ function msToS(ms: number, fixedBit = 2) {
 }
 
 export const getStatistic = (records: IRecord[]) => {
+    console.log(records)
     const MAX_TIME = 1e10;
     let Count = records.length, // 成绩次数
         Avg = "--", // 所有成绩平均值
@@ -73,4 +74,15 @@ export const formatTime = (date: Date) => {
 const formatNumber = (n: number) => {
     const s = n.toString();
     return s[1] ? s : "0" + s;
+};
+
+export const getByteLength = (value: string): number => {
+    return value.replace(/[^\u0000-\u00ff]/g, "aa").length;
+};
+
+export const cutStrByByte = (str: string, byte: number): string => {
+    while (getByteLength(str) > byte) {
+        str = str.slice(0, -1);
+    }
+    return str;
 };

@@ -10,6 +10,10 @@ Component({
             type: String,
             value: "取消",
         },
+        isCancel: {
+            type: Boolean,
+            value: true,
+        },
     },
     data: {},
     methods: {

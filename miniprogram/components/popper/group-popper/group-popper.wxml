@@ -1,0 +1,68 @@
+<view class="group-popper" bind:tap="onClickWrapper">
+    <view class="container" catchtap="onClickPopper">
+        <view class="head">
+            <view class="title">选择一个分组</view>
+            <view class="add" bind:tap="onClickAddGroup">
+                <view class="icon">
+                    <icon-font icon="icon-add-circle-line" color="#4051b1" size="40rpx"></icon-font>
+                </view>
+                <view> 新建 </view>
+            </view>
+        </view>
+        <view class="group-list">
+            <view
+                class="group-item {{item==currentGroup?'selected': ''}}"
+                wx:for="{{groupList}}"
+                wx:key="item"
+                data-item="{{item}}"
+                data-index="{{index}}"
+                bind:tap="onTapChangeGroup"
+            >
+                <view class="group-name"> {{item}} </view>
+                <view class="btns">
+                    <view class="btn" data-item="{{item}}" data-index="{{index}}" catch:tap="onTapUpdateGroupName">
+                        <icon-font icon="icon-pencil-line" size="40rpx"></icon-font>
+                    </view>
+                    <view
+                        class="btn"
+                        data-item="{{item}}"
+                        data-index="{{index}}"
+                        wx:if="{{groupList.length >1}}"
+                        catch:tap="onTapDeleteGroup"
+                    >
+                        <icon-font icon="icon-delete-bin-6-line" size="40rpx"></icon-font>
+                    </view>
+                </view>
+            </view>
+        </view>
+    </view>
+
+    <view class="confirm-popper" wx:if="{{isShowConfirmPopper}}" catchtap="onClickPopper">
+        <view class="container">
+            <view class="title">确定要删除组<text>{{deleteGroupName}}</text>?</view>
+            <view class="btns">
+                <view class="btn" bind:tap="onCancelDeleteGroup">取消</view>
+                <view class="btn" bind:tap="onDeleteGroup">确定</view>
+            </view>
+        </view>
+    </view>
+    <view class="edit-popper" wx:if="{{isShowEditPopper}}" catchtap="onClickPopper">
+        <view class="container">
+            <view class="title"> 输入分组名称 </view>
+            <view class="input">
+                <input
+                    type="text"
+                    placeholder="输入分组名称"
+                    focus
+                    model:value="{{newGroupName}}"
+                    bindinput="onInputGroupName"
+                />
+                <view class="word-num">{{groupNameWordNum}}/16</view>
+            </view>
+            <view class="btns">
+                <view class="btn" bind:tap="onCancelEditGroup">取消</view>
+                <view class="btn" bind:tap="onEditGroup">确定</view>
+            </view>
+        </view>
+    </view>
+</view>

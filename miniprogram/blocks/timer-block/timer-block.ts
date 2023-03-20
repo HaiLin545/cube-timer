@@ -17,7 +17,7 @@ Component({
     data: {
         time: 0,
         timeLeft: app.setting.inspectionTime,
-        timer: 0,
+        timer: 0, // return of setTime
         isTiming: false,
         disruption: "",
         timeOutTip: "",
@@ -32,6 +32,12 @@ Component({
     },
     observers: {},
     methods: {
+        initState() {
+            this.setData({
+                time: 0,
+                showOperation: false,
+            });
+        },
         handleTap() {
             console.log("Tap the timer", this.data.timeOutTip);
             let newState = null;

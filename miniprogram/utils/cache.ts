@@ -20,13 +20,13 @@ export const setStorage = (key: string, data: any) => {
     }
 };
 
-export const getStorageAsync = async (key: string) => {
+export const getStorageAsync = (key: string) => {
     return new Promise((resolve, reject) => {
         wx.getStorage({
             key,
             success: function (res) {
-                console.log("getStorageAsync success", key);
-                resolve(res.data);
+                console.log("getStorageAsync success", key, JSON.parse(res.data));
+                resolve(JSON.parse(res.data));
             },
             fail: function (err) {
                 reject(err);
@@ -43,4 +43,30 @@ export const getStorage = (key: string) => {
     } catch (err) {
         console.log("getStorage fail", key, err);
     }
+};
+
+export const getRecordsStorage = async (keys: Array<string>) => {
+    return Promise.all(
+        keys.map((key) => {
+            return new Promise((resolve, reject) => {
+                getStorageAsync(key)
+                    .then((res) => resolve(res))
+                    .catch((err) => {
+                        resolve([]);
+                    });
+            });
+        })
+    );
+};
+
+export const deleteStorageAsync = async (key: string) => {
+    wx.removeStorage({
+        key: key,
+        success: () => {
+            console.log("deleteStorage success", key);
+        },
+        fail: () => {
+            console.log("deleteStorage fail", key, err);
+        },
+    });
 };
