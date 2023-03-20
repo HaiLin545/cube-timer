@@ -19,15 +19,15 @@
 .user-info {
     display: flex;
     align-items: center;
+    justify-content: center;
     .user-avatar {
-        border: 2px solid black;
+        border: 1px solid white;
         height: @avatar-size;
         width: @avatar-size;
         border-radius: @avatar-size;
     }
     .user-name {
-        font-weight: bold;
-        margin: 20rpx 0;
+        margin: 20rpx 40rpx;
         font-size: 34rpx;
         max-width: 75vw;
         overflow: hidden;
@@ -40,10 +40,9 @@
     justify-content: center;
     align-items: center;
     .login-btn {
-        margin-left: 25rpx;
         line-height: 60rpx;
-        width: 180rpx;
-        height: 60rpx;
+        margin-left: 40rpx;
+        width: fit-content;
         text-align: center;
         background-color: rgba(255, 255, 255, 0.5);
         border-radius: 20rpx;
@@ -84,7 +83,7 @@
         height: 2rpx;
         width: 100vw;
         margin: 25rpx 0;
-        background-color: rgba(0, 0, 0, 0.5);
+        background-color: rgba(0, 0, 0, 0.4);
     }
 }
 

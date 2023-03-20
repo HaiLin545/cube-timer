@@ -1,5 +1,9 @@
 {
-    "pages": ["pages/home/home", "pages/user/user"],
+    "pages": [
+        "pages/home/home",
+        "pages/user/user",
+        "pages/update-profile/update-profile"
+    ],
     "usingComponents": {
         "icon-font": "/components/icon-font/icon-font",
         "time-box": "/components/time-box/time-box",

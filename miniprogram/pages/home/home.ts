@@ -196,7 +196,7 @@ Component({
                 this.setData({
                     groupList: app.groups,
                     currentGroup: app.currentGroup,
-                    isShowGroupPopper: false,
+                    // isShowGroupPopper: false,
                 });
                 this.selectComponent("#time-block").initState();
             }
@@ -209,7 +209,7 @@ Component({
             this.setData({
                 currentGroup: app.currentGroup,
                 groupList: app.groups,
-                isShowGroupPopper: false,
+                // isShowGroupPopper: false,
             });
             e.detail.callback();
         },

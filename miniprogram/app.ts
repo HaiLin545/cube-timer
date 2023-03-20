@@ -7,6 +7,18 @@ App<IAppOption>({
     data: {
         loaded: false,
     },
+    api: {
+        baseUrl: "localhost",
+        appid: "wx9e61090c0a980245",
+        secret: "782235eaaad40aa8bd89ca9c1ec554e1",
+    },
+    user: {
+        isLogin: false,
+        openId: "",
+        sessionKey: "",
+        avatar: "",
+        nickName: "",
+    },
     cache: {},
     currentGroup: "",
     groups: [],

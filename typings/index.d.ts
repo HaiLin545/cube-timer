@@ -4,6 +4,18 @@ interface IAppOption {
     data: {
         loaded: boolean;
     };
+    api: {
+        baseUrl: string;
+        appid: string;
+        secret: string;
+    };
+    user: {
+        isLogin: boolean;
+        openId: string;
+        sessionKey: string;
+        avatar: string;
+        nickName: string;
+    };
     systemInfo: WechatMiniprogram.SystemInfo;
     menuButtonInfo: any;
     records: {
