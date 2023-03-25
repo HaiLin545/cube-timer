@@ -27,16 +27,16 @@ Component({
     lifetimes: {
         attached() {
             app.onLoadData = () => {
-                this.setData({
-                    currentGroup: app.currentGroup,
-                    groupList: app.groups,
-                    records: app.records[app.currentGroup],
-                    recordsStatistic: getStatistic(app.records[app.currentGroup]),
-                });
+                this.updateData();
             };
             if (app.data.loaded) {
                 app.onLoadData();
             }
+        },
+    },
+    pageLifetimes: {
+        show() {
+            this.updateData();
         },
     },
     observers: {
@@ -56,6 +56,14 @@ Component({
         },
     },
     methods: {
+        updateData() {
+            this.setData({
+                currentGroup: app.currentGroup,
+                groupList: app.groups,
+                records: app.records[app.currentGroup],
+                recordsStatistic: getStatistic(app.records[app.currentGroup]),
+            });
+        },
         handleTabChange(e: WechatMiniprogram.CustomEvent) {
             this.setData({
                 currentTabIndex: e.detail.current,

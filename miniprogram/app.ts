@@ -1,24 +1,13 @@
 // app.ts
 // App<IAppOption>({
 import { IOPT } from "./type";
-import { getStorage, setStorageAsync, getRecordsStorage, deleteStorageAsync } from "./utils/cache";
+import { getStorage, getStorageAsync, setStorageAsync, getRecordsStorage, deleteStorageAsync } from "./utils/cache";
 
 App<IAppOption>({
     data: {
         loaded: false,
     },
-    api: {
-        baseUrl: "localhost",
-        appid: "wx9e61090c0a980245",
-        secret: "782235eaaad40aa8bd89ca9c1ec554e1",
-    },
-    user: {
-        isLogin: false,
-        openId: "",
-        sessionKey: "",
-        avatar: "",
-        nickName: "",
-    },
+    user: {},
     cache: {},
     currentGroup: "",
     groups: [],
@@ -30,6 +19,7 @@ App<IAppOption>({
     systemInfo: wx.getSystemInfoSync(),
     menuButtonInfo: wx.getMenuButtonBoundingClientRect(),
     async onLaunch() {
+        this.loadLoginState();
         this.groups = getStorage("groups") ?? ["normal"];
         this.currentGroup = getStorage("currentGroup") ?? this.groups[0];
         const storage = await getRecordsStorage(this.groups);
@@ -39,6 +29,17 @@ App<IAppOption>({
         console.log(this.groups, this.currentGroup, this.records);
         this.data.loaded = true;
         this.onLoadData();
+    },
+    loadLoginState(){
+        getStorageAsync("user").then((res) => {
+            if (res.expiration > Date.now()) {
+                this.user = res;
+            }
+        });
+    },
+    storeLoginState() {
+        const expiration = Date.now() + 18000000; // 300min or 5h;
+        setStorageAsync("user", { ...this.user, expiration });
     },
     onLoadData() {},
     handleChangeTest() {},
@@ -136,5 +137,21 @@ App<IAppOption>({
         if (name == this.currentGroup) {
             this.currentGroup = this.groups[0];
         }
+    },
+    handleSyncDown(data: Object) {
+        const { records, currentGroup, groups } = data;
+        console.log(data);
+        Object.keys(records).forEach((key) => {
+            this.records[key] = records[key];
+            setStorageAsync(key, this.records[key]);
+        });
+        groups.forEach((name: string) => {
+            if (!this.groups.includes(name)) {
+                this.groups.unshift(name);
+            }
+        });
+        this.currentGroup = currentGroup;
+        setStorageAsync("groups", this.groups);
+        setStorageAsync("currentGroup", this.currentGroup);
     },
 });

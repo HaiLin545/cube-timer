@@ -31,5 +31,11 @@ Component({
             this.data.onConfirm();
             this.triggerEvent("closePopper");
         },
+        handleTapSyncUp() {
+            this.triggerEvent("syncUp");
+        },
+        handleTapSyncDown() {
+            this.triggerEvent("syncDown");
+        },
     },
 });

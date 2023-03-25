@@ -3,7 +3,7 @@
         <icon-font bind:tap="handleTapBack" class="back-icon" icon="icon-arrow-left-s-line" size="60rpx"></icon-font>
     </view>
     <view class="user-info" wx:if="{{isLogin}}" bind:tap="onUpdateInfo">
-        <image class="user-avatar" src="{{avatarPath}}"> </image>
+        <image class="user-avatar" src="{{avatarPath}}" mode="aspectFit"> </image>
         <view class="user-name">{{nickName}}</view>
     </view>
     <view class="login-area" wx:else>
@@ -13,7 +13,7 @@
         <view class="login-btn" bindtap="handleTapLoginBtn">微信登录</view>
     </view>
     <view class="entry-list">
-        <view wx:for="{{entryList}}" wx:key="title" wx:for-item="entry" >
+        <view wx:for="{{entryList}}" wx:key="title" wx:for-item="entry">
             <view wx:if="{{index > 0 &&index %3 ===0}}" class="separate-line"></view>
             <view class="entry-item" bind:tap="handleTapEntry" data-index="{{index}}">
                 <icon-font
@@ -27,4 +27,19 @@
             </view>
         </view>
     </view>
+    <confirm-popper
+        wx:if="{{showConfirmPopper}}"
+        isCancel="{{confirmPopperIsCancel}}"
+        title="{{confirmPopperTitle}}"
+        bind:closePopper="closeConfirmPopper"
+        onConfirm="{{confirmFunc}}"
+    ></confirm-popper>
+    <sync-popper
+        wx:if="{{showSyncPopper}}"
+        bind:closePopper="hideSyncPopper"
+        bind:syncUp="onSyncUp"
+        bind:syncDown="onSyncDown"
+    >
+    </sync-popper>
 </view>
+S

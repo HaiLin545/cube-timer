@@ -4,11 +4,6 @@ interface IAppOption {
     data: {
         loaded: boolean;
     };
-    api: {
-        baseUrl: string;
-        appid: string;
-        secret: string;
-    };
     user: {
         isLogin: boolean;
         openId: string;
@@ -37,6 +32,9 @@ interface IAppOption {
     addGroup: Function;
     updateGroupName: Function;
     deleteGroup: Function;
+    handleSyncDown: Function;
+    storeLoginState: Function;
+    loadLoginState: Function;
 }
 
 interface IRecord {

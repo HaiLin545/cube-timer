@@ -1,14 +1,60 @@
-import { request } from "./request";
+import { request, baseUrl } from "./request";
 
-export function getOpenId(appid: string, secret: string, js_code: string) {
+const app = getApp<IAppOption>();
+
+export function getOpenId(js_code: string) {
     return request({
         method: "GET",
-        url: "https://api.weixin.qq.com/sns/jscode2session",
+        url: "/getopenid",
         data: {
-            appid,
-            secret,
             js_code,
-            grant_type: "authorization_code",
+        },
+    });
+}
+
+export function login(openid: string) {
+    return request({
+        method: "GET",
+        url: "/login",
+        data: {
+            openid,
+        },
+    });
+}
+
+export function updateAvatar(avatar: string) {
+    console.log(avatar);
+    return new Promise((resolve, reject) => {
+        wx.uploadFile({
+            url: baseUrl + "/updateAvatar",
+            filePath: avatar,
+            name: "avatar",
+            formData: {
+                openid: app.user.openId,
+            },
+            header: {
+                "content-type": "multipart/form-data", //注意
+            },
+            success: (res) => {
+                console.log("upload user info success", res);
+                resolve(res);
+            },
+            fail: (err) => {
+                console.log(err);
+                reject(err);
+            },
+        });
+    });
+}
+
+export function updateName(nickName: string) {
+    console.log("update name", nickName)
+    return request({
+        method: "POST",
+        url: "/updateName",
+        data: {
+            openid: app.user.openId,
+            nickName: nickName,
         },
     });
 }

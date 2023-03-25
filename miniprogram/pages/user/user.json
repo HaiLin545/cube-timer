@@ -1,4 +1,7 @@
 {
-    "usingComponents": {},
+    "usingComponents": {
+       "confirm-popper": "/components/popper/confirm-popper/confirm-popper",
+       "sync-popper": "/components/popper/sync-popper/sync-popper"
+    },
     "navigationStyle": "custom"
 }
