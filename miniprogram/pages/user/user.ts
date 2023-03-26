@@ -33,8 +33,8 @@ Page({
     handleTapBack() {
         wx.navigateBack();
     },
-    serverLogin(params: { openid: string; session_key: string }) {
-        const { openid, session_key } = params;
+    serverLogin(params: { openid: string }) {
+        const { openid } = params;
         app.user.openId = openid;
         Account.login(openid)
             .then((login_res) => {
@@ -42,7 +42,6 @@ Page({
                 app.user.isLogin = true;
                 app.user.avatar = getFullUrl(avatar);
                 app.user.nickName = nickName;
-                app.user.sessionKey = session_key;
                 this.setData({
                     avatarPath: app.user.avatar,
                     nickName: app.user.nickName,

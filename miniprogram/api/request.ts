@@ -1,7 +1,7 @@
 const app = getApp<IAppOption>();
 
 
-export const baseUrl = 'http://116.62.220.36:5454';
+export const baseUrl = 'https://hailin545.cn:5454';
 
 export function request(params: { method: "GET" | "POST" | "DELETE" | "PUT"; url: string; data: object }) {
     console.log(params.data)
