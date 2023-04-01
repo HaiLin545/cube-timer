@@ -105,7 +105,7 @@ Component({
                 isTiming: true,
                 time: 0,
                 showOperation: false,
-                timeOutTip: "",
+                // timeOutTip: "",
                 operationType: "",
                 timer: setInterval(() => {
                     this.setData({

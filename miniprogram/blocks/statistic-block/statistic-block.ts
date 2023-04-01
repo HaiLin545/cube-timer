@@ -36,6 +36,7 @@ const option = {
     yAxis: {
         type: "value",
         position: "right",
+        scale: true,
         offset: 10,
         axisTick: {
             show: false, //不显示坐标轴刻度线
@@ -88,7 +89,7 @@ function caculate(records: Array<IRecord>) {
         return {
             name: key,
             type: "line",
-            smooth: true,
+            // smooth: true,
             data: datas[key],
             symbolSize: 2,
         };
