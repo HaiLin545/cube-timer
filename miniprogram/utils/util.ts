@@ -4,7 +4,6 @@ function msToS(ms: number, fixedBit = 2) {
 }
 
 export const getStatistic = (records: IRecord[]) => {
-    console.log(records)
     const MAX_TIME = 1e10;
     let Count = records.length, // 成绩次数
         Avg = "--", // 所有成绩平均值

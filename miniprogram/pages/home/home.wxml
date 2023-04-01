@@ -26,7 +26,7 @@
                 <record-block records="{{records}}" bind:showRecordPopper="handelShowRecordPopper"></record-block>
             </swiper-item>
             <swiper-item class="swiper-item" wx:if="{{timerState==='Off'}}">
-                <statistic-block></statistic-block>
+                <statistic-block records="{{records}}"></statistic-block>
             </swiper-item>
         </swiper>
     </main>

@@ -25,7 +25,7 @@ export const getStorageAsync = (key: string) => {
         wx.getStorage({
             key,
             success: function (res) {
-                console.log("getStorageAsync success", key, JSON.parse(res.data));
+                console.log("getStorageAsync success", key);
                 resolve(JSON.parse(res.data));
             },
             fail: function (err) {

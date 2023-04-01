@@ -27,16 +27,20 @@ Component({
     lifetimes: {
         attached() {
             app.onLoadData = () => {
+                console.log("app data loaded");
                 this.updateData();
             };
             if (app.data.loaded) {
+                console.log("home attached after app data loaded");
                 app.onLoadData();
+            } else {
+                console.log("home attached before app data loaded");
             }
         },
     },
     pageLifetimes: {
         show() {
-            this.updateData();
+            app.data.loaded && this.updateData();
         },
     },
     observers: {

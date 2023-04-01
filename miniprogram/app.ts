@@ -26,7 +26,6 @@ App<IAppOption>({
         storage.forEach((value, idx) => {
             this.records[this.groups[idx]] = value as IRecord[];
         });
-        console.log(this.groups, this.currentGroup, this.records);
         this.data.loaded = true;
         this.onLoadData();
     },
