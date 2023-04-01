@@ -1,5 +1,5 @@
 <!-- index.wxml -->
-<view class="home {{timerState==='Off' && 'off-state'}}">
+<view class="home {{timerState==='Off' && 'off-state'}}" style="background-color: {{bgColor}}">
     <header
         bind:onSetting="openSideBlock"
         currentTabIndex="{{currentTabIndex}}"

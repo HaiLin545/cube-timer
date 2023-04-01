@@ -7,6 +7,9 @@ App<IAppOption>({
     data: {
         loaded: false,
     },
+    style: {
+        bgColor: "#CDE1FD",
+    },
     user: {},
     cache: {},
     currentGroup: "",
@@ -20,6 +23,7 @@ App<IAppOption>({
     menuButtonInfo: wx.getMenuButtonBoundingClientRect(),
     async onLaunch() {
         this.loadLoginState();
+        this.loadStyleState();
         this.groups = getStorage("groups") ?? ["normal"];
         this.currentGroup = getStorage("currentGroup") ?? this.groups[0];
         const storage = await getRecordsStorage(this.groups);
@@ -29,12 +33,25 @@ App<IAppOption>({
         this.data.loaded = true;
         this.onLoadData();
     },
-    loadLoginState(){
-        getStorageAsync("user").then((res) => {
-            if (res.expiration > Date.now()) {
-                this.user = res;
-            }
-        });
+    loadStyleState() {
+        getStorageAsync("style")
+            .then((style) => {
+                this.style = style;
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+    },
+    loadLoginState() {
+        getStorageAsync("user")
+            .then((res) => {
+                if (res.expiration > Date.now()) {
+                    this.user = res;
+                }
+            })
+            .catch((err) => {
+                console.log(err);
+            });
     },
     storeLoginState() {
         const expiration = Date.now() + 18000000; // 300min or 5h;
@@ -152,5 +169,9 @@ App<IAppOption>({
         this.currentGroup = currentGroup;
         setStorageAsync("groups", this.groups);
         setStorageAsync("currentGroup", this.currentGroup);
+    },
+    updateTheme(color) {
+        this.style.bgColor = color;
+        setStorageAsync("style", this.style);
     },
 });

@@ -16,6 +16,9 @@ interface IAppOption {
     records: {
         [group: string]: Array<IRecord>;
     };
+    style: {
+        bgColor: string;
+    };
     setting: ISetting;
     cache: Object;
     groups: Array<string>;
@@ -35,6 +38,8 @@ interface IAppOption {
     handleSyncDown: Function;
     storeLoginState: Function;
     loadLoginState: Function;
+    loadStyleState: Function;
+    updateTheme: Function;
 }
 
 interface IRecord {

@@ -23,6 +23,7 @@ Component({
         confirmPopperIsCancel: true,
         confirmCallback: () => {},
         recordsStatistic: {},
+        bgColor: app.style.bgColor,
     },
     lifetimes: {
         attached() {
@@ -66,6 +67,7 @@ Component({
                 groupList: app.groups,
                 records: app.records[app.currentGroup],
                 recordsStatistic: getStatistic(app.records[app.currentGroup]),
+                bgColor: app.style.bgColor,
             });
         },
         handleTabChange(e: WechatMiniprogram.CustomEvent) {

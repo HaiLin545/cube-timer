@@ -1,4 +1,4 @@
-<view class="user" style="padding-top:{{statusBarHeight}}px">
+<view class="user" style="padding-top:{{statusBarHeight}}px; background-color: {{bgColor}};">
     <view class="nav-bar" style="height: {{navBarHeight}}px">
         <icon-font bind:tap="handleTapBack" class="back-icon" icon="icon-arrow-left-s-line" size="60rpx"></icon-font>
     </view>
@@ -41,5 +41,9 @@
         bind:syncDown="onSyncDown"
     >
     </sync-popper>
+    <theme-popper
+        wx:if="{{showThemePopper}}"
+        bind:closePopper="hideThemePopper"
+        bind:alterTheme="onAlterTheme"
+    ></theme-popper>
 </view>
-S

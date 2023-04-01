@@ -12,22 +12,25 @@ Page({
         nickName: app.user.nickName,
         entryList: [
             { icon: "icon-cached", title: "同步数据", link: "/" },
-            // { icon: "icon-paint_outlined", title: "主题配色", link: "/" },
+            { icon: "icon-paint_outlined", title: "主题配色", link: "/" },
             // { icon: "icon-palette-line", title: "魔方配色", link: "/" },
             // { icon: "icon-settings-4-line", title: "设置", link: "/" },
             // { icon: "icon-helpoutline", title: "关于与反馈", link: "/" },
         ],
         showConfirmPopper: false,
+        showSyncPopper: false,
+        showThemePopper: false,
         confirmPopperIsCancel: false,
         confirmPopperTitle: "请先登录",
-        showSyncPopper: false,
         confirmFunc: () => {},
+        bgColor: app.style.bgColor,
     },
     onShow() {
         this.setData({
             isLogin: app.user.isLogin,
             avatarPath: app.user.avatar,
             nickName: app.user.nickName,
+            bgCOlor: app.style.bgColor,
         });
     },
     handleTapBack() {
@@ -101,6 +104,8 @@ Page({
             case "同步数据":
                 this.handleTapSync();
                 break;
+            case "主题配色":
+                this.handleChangeTheme();
             default:
                 break;
         }
@@ -183,6 +188,24 @@ Page({
                         });
                     });
             },
+        });
+    },
+    hideThemePopper() {
+        this.setData({
+            showThemePopper: false,
+        });
+    },
+    handleChangeTheme() {
+        this.setData({
+            showThemePopper: true,
+        });
+    },
+    onAlterTheme(e: WechatMiniprogram.CustomEvent) {
+        console.log("new theme:", e.detail.color);
+        const newColor = e.detail.color;
+        app.updateTheme(newColor);
+        this.setData({
+            bgColor: newColor,
         });
     },
 });

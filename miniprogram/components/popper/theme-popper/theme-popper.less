@@ -1,0 +1,40 @@
+.theme-popper {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 500;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container {
+    width: 500rpx;
+    background-color: white;
+    padding: 20rpx 30rpx;
+    border-radius: 20rpx;
+    .title {
+        text-align: center;
+        font-weight: bold;
+        padding: 10rpx 0;
+    }
+    @item-width: 140rpx;
+    .theme-list {
+        margin-top: 10rpx;
+        display: grid;
+        grid-template-columns: repeat(5, @item-width);
+        gap: 8rpx 8rpx;
+        overflow-x: scroll;
+        .theme-item {
+            width: @item-width;
+            height: 200rpx;
+            border-radius: 20rpx;
+            &:active{
+                filter: opacity(50%);
+            }
+        }
+    }
+}
