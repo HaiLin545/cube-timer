@@ -32,6 +32,10 @@ App<IAppOption>({
         });
         this.data.loaded = true;
         this.onLoadData();
+        wx.showShareMenu({
+            withShareTicket: true,
+            menus: ["shareAppMessage", "shareTimeline"],
+        });
     },
     loadStyleState() {
         getStorageAsync("style")
