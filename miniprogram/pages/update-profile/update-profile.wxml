@@ -1,0 +1,7 @@
+<view class="update-profile">
+    <button class="avatar-wrapper" open-type="chooseAvatar" bind:chooseavatar="onChooseAvatar">
+        <image class="avatar" src="{{avatarUrl}}" mode="aspectFit"></image>
+    </button>
+    <input type="nickname" class="input" placeholder="请输入昵称" model:value="{{nickName}}" />
+    <button class="confirm" bind:tap="onUpdate">确认修改</button>
+</view>

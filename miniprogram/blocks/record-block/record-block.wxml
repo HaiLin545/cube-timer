@@ -1,0 +1,22 @@
+<view class="record">
+    <view class="record-container" wx:if="{{records.length>0}}">
+        <view class="record-list">
+            <view
+                class="record-item"
+                wx:for="{{records}}"
+                wx:key="id"
+                wx:if="{{!record.isDelete}}"
+                wx:for-item="record"
+                bind:tap="onClickRecordItem"
+                data-record="{{record}}"
+            >
+                <time-box time="{{record.time}}" isDNF="{{record.isDNF}}" isAdd2="{{record.isAdd2}}"></time-box>
+                <view class="record-date">{{record.day}}</view>
+            </view>
+        </view>
+    </view>
+    <view class="warn-empty" wx:else>
+        <image class="warn-empty-img" src="/assets/warn_empty_list.png" alt="warn empty" />
+        <view class="warn-text">本组还没有成绩哦！</view>
+    </view>
+</view>

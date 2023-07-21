@@ -1,0 +1,16 @@
+<view class="sync-popper" bind:tap="onClickWrapper">
+    <view class="container" catch:tap="onClickPopper">
+        <view class="up entry" bind:tap="handleTapSyncUp">
+            <view class="icon-box">
+                <icon-font icon="icon-shangchuan" size="50rpx"></icon-font>
+            </view>
+            <view>上传数据到服务器</view>
+        </view>
+        <view class="down entry" bind:tap="handleTapSyncDown">
+            <view class="icon-box">
+                <icon-font icon="icon-24px" size="50rpx"></icon-font>
+            </view>
+            <view>同步数据到本地</view>
+        </view>
+    </view>
+</view>

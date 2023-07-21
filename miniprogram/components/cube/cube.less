@@ -1,0 +1,31 @@
+.cube {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+@block-size: 24rpx;
+
+.cube-2d {
+    display: grid;
+    grid-template-columns: repeat(4, @block-size*3);
+    grid-template-rows: repeat(3, @block-size*3);
+    gap: 8rpx;
+    // background-color: lightblue;
+    width: fit-content;
+    height: fit-content;
+}
+
+.face {
+    // background-color: red;
+    display: grid;
+    grid-template-columns: repeat(3, @block-size);
+    grid-template-rows: repeat(3, @block-size);
+}
+
+.block {
+    border: 1rpx solid black;
+    width: @block-size;
+    height: @block-size;
+}

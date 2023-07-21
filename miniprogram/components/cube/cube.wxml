@@ -1,0 +1,28 @@
+<view class="cube">
+    <view class="cube-2d">
+        <view class="face"></view>
+        <view class="face">
+            <view class="block" wx:for="{{u}}" wx:key="id" style="background-color: {{item.color}}"></view>
+        </view>
+        <view class="face"></view>
+        <view class="face"></view>
+        <view class="face">
+            <view class="block" wx:for="{{l}}" wx:key="id" style="background-color: {{item.color}}"> </view>
+        </view>
+        <view class="face">
+            <view class="block" wx:for="{{f}}" wx:key="id" style="background-color: {{item.color}}"> </view>
+        </view>
+        <view class="face">
+            <view class="block" wx:for="{{r}}" wx:key="id" style="background-color: {{item.color}}"> </view>
+        </view>
+        <view class="face">
+            <view class="block" wx:for="{{b}}" wx:key="id" style="background-color: {{item.color}}"> </view>
+        </view>
+        <view class="face"></view>
+        <view class="face">
+            <view class="block" wx:for="{{d}}" wx:key="id" style="background-color: {{item.color}}"> </view>
+        </view>
+        <view class="face"></view>
+        <view class="face"></view>
+    </view>
+</view>

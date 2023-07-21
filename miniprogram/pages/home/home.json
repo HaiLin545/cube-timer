@@ -1,0 +1,13 @@
+{
+    "usingComponents": {
+        "header": "/components/header/header",
+        "tabbar": "/components/tabbar/tabbar",
+        "timer-block": "/blocks/timer-block/timer-block",
+        "record-block": "/blocks/record-block/record-block",
+        "statistic-block": "/blocks/statistic-block/statistic-block",
+        "record-popper": "/components/popper/record-popper/record-popper",
+        "confirm-popper": "/components/popper/confirm-popper/confirm-popper",
+        "group-popper": "/components/popper/group-popper/group-popper"
+    },
+    "navigationStyle": "custom"
+}

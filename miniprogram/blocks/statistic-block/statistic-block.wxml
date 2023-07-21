@@ -1,0 +1,3 @@
+<view class="statistic-block">
+    <ec-canvas convas-id="echarts" ec="{{ec}}" id="echarts" type="2d"></ec-canvas>
+</view>

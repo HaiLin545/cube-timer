@@ -1,0 +1,6 @@
+{
+    "component": true,
+    "usingComponents": {
+        "icon-font": "/components/icon-font/icon-font"
+    }
+}

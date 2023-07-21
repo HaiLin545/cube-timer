@@ -1,0 +1,60 @@
+<!-- index.wxml -->
+<view class="home {{timerState==='Off' && 'off-state'}}" style="background-color: {{bgColor}}">
+    <header
+        bind:onSetting="openSideBlock"
+        currentTabIndex="{{currentTabIndex}}"
+        currentGroup="{{currentGroup}}"
+        recordLength="{{records.length}}"
+        bind:clearGroup="onClearGroup"
+        bind:showGroupPopper="showGroupPopper"
+        wx:if="{{timerState==='Off'}}"
+    ></header>
+    <main class="main">
+        <swiper class="swiper" bind:change="handleTabChange" current="{{currentTabIndex}}" duration="300">
+            <swiper-item class="swiper-item">
+                <timer-block
+                    id="time-block"
+                    bind:onAddRecord="onAddRecord"
+                    timerState="{{timerState}}"
+                    numbers="{{recordsStatistic}}"
+                    enableInspection="{{enableInspection}}"
+                    bind:changeTimerState="onChangeTimerState"
+                    bind:updateCurrentRecord="handleUpdateRecord"
+                ></timer-block>
+            </swiper-item>
+            <swiper-item class="swiper-item" wx:if="{{timerState==='Off'}}">
+                <record-block records="{{records}}" bind:showRecordPopper="handelShowRecordPopper"></record-block>
+            </swiper-item>
+            <swiper-item class="swiper-item" wx:if="{{timerState==='Off'}}">
+                <statistic-block records="{{records}}"></statistic-block>
+            </swiper-item>
+        </swiper>
+    </main>
+    <record-popper
+        wx:if="{{isShowRecordPopper}}"
+        record="{{popperRecord}}"
+        bind:closePopper="handleCloseRecordPopper"
+        bind:updateRecordItem="handleUpdateRecordItem"
+    >
+    </record-popper>
+    <confirm-popper
+        bind:closePopper="handleHideConfirmPopper"
+        wx:if="{{isShowConfirmPopper}}"
+        onConfirm="{{confirmCallback}}"
+        title="{{confirmPopperTitle}}"
+        okText="{{confirmPopperOkText}}"
+        isCancel="{{confirmPopperIsCancel}}"
+    ></confirm-popper>
+    <group-popper
+        wx:if="{{isShowGroupPopper}}"
+        currentGroup="{{currentGroup}}"
+        groupList="{{groupList}}"
+        bind:closePopper="closeGroupPopper"
+        bind:addGroup="onAddGroup"
+        bind:updateGroup="onUpdateGroup"
+        bind:changeGroup="onChangeGroup"
+        bind:deleteGroup="onDeleteGroup"
+        bind:alertDeleteGroup="onAlertDeleteGroup"
+    ></group-popper>
+    <tabbar wx:if="{{timerState==='Off'}}" tabindex="{{currentTabIndex}}" bind:onClickTab="handleClickTab"></tabbar>
+</view>

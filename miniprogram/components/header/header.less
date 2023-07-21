@@ -1,0 +1,44 @@
+@border-radius: 20rpx;
+
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-bottom-left-radius: @border-radius;
+    border-bottom-right-radius: @border-radius;
+    background-color: rgba(255, 255, 255, 0.5);
+    .left {
+        position: absolute;
+        left: 40rpx;
+        display: flex;
+        .icon-box{
+            margin-right: 25rpx;
+            border-radius: 100%;
+            padding: 6rpx;
+            &:active{
+                background-color: rgba(0, 0, 0, 0.2);
+            }
+        }
+    }
+
+    .group {
+        display: flex;
+        align-items: center;
+        padding: 0 20rpx;
+
+        .current-group {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            font-size: 32rpx;
+        }
+
+        .switch-group-icon {
+            margin-left: 20rpx;
+        }
+
+        &:active {
+            background-color: rgba(0, 0, 0, 0.2);
+        }
+    }
+}

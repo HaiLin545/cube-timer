@@ -1,0 +1,9 @@
+<view class="confirm-popper" bind:tap="onClickWrapper">
+    <view class="container" catchtap="onClickPopper">
+        <view class="title">{{title}}</view>
+        <view class="btns">
+            <view class="btn" bind:tap="onCancel" wx:if="{{isCancel}}">{{cancelText}}</view>
+            <view class="btn" bind:tap="onOk">{{okText}}</view>
+        </view>
+    </view>
+</view>

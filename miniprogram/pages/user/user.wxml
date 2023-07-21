@@ -1,0 +1,49 @@
+<view class="user" style="padding-top:{{statusBarHeight}}px; background-color: {{bgColor}};">
+    <view class="nav-bar" style="height: {{navBarHeight}}px">
+        <icon-font bind:tap="handleTapBack" class="back-icon" icon="icon-arrow-left-s-line" size="60rpx"></icon-font>
+    </view>
+    <view class="user-info" wx:if="{{isLogin}}" bind:tap="onUpdateInfo">
+        <image class="user-avatar" src="{{avatarPath}}" mode="aspectFit"> </image>
+        <view class="user-name">{{nickName}}</view>
+    </view>
+    <view class="login-area" wx:else>
+        <view class="icon">
+            <icon-font class="not-login-avatar" icon="icon-sentiment-neutral" size="150rpx"> </icon-font>
+        </view>
+        <view class="login-btn" bindtap="handleTapLoginBtn">微信登录</view>
+    </view>
+    <view class="entry-list">
+        <view wx:for="{{entryList}}" wx:key="title" wx:for-item="entry">
+            <view wx:if="{{index > 0 &&index %3 ===0}}" class="separate-line"></view>
+            <view class="entry-item" bind:tap="handleTapEntry" data-index="{{index}}">
+                <icon-font
+                    catch:tap="handleTapEntry"
+                    data-index="{{index}}"
+                    icon="{{entry.icon}}"
+                    class="entry-icon"
+                    size="50rpx"
+                ></icon-font>
+                <text catch:tap="handleTapEntry" data-index="{{index}}" class="entry-title"> {{entry.title}} </text>
+            </view>
+        </view>
+    </view>
+    <confirm-popper
+        wx:if="{{showConfirmPopper}}"
+        isCancel="{{confirmPopperIsCancel}}"
+        title="{{confirmPopperTitle}}"
+        bind:closePopper="closeConfirmPopper"
+        onConfirm="{{confirmFunc}}"
+    ></confirm-popper>
+    <sync-popper
+        wx:if="{{showSyncPopper}}"
+        bind:closePopper="hideSyncPopper"
+        bind:syncUp="onSyncUp"
+        bind:syncDown="onSyncDown"
+    >
+    </sync-popper>
+    <theme-popper
+        wx:if="{{showThemePopper}}"
+        bind:closePopper="hideThemePopper"
+        bind:alterTheme="onAlterTheme"
+    ></theme-popper>
+</view>

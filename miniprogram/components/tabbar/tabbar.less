@@ -1,0 +1,21 @@
+@tabbar-radius: 40rpx;
+
+.tabbar {
+    height: 100rpx;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 100;
+    background-color: rgba(255, 255, 255, 0.5);
+    border-top-left-radius: @tabbar-radius;
+    border-top-right-radius: @tabbar-radius;
+    padding-bottom: env(safe-area-inset-bottom, 10rpx);
+    display: flex;
+    align-items: center;
+    .tab-list {
+        width: 100%;
+        display: flex;
+        justify-content: space-around;
+    }
+}

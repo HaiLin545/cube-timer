@@ -1,0 +1,22 @@
+/**home.less**/
+
+@tabbar-height: 100rpx;
+
+.home {
+    // background-color: #cde1fd;
+    width: 100vw;
+    height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    &.off-state {
+        padding-bottom: calc(@tabbar-height + env(safe-area-inset-bottom));
+    }
+}
+
+.main {
+    flex: 1;
+    .swiper {
+        height: 100%;
+    }
+}

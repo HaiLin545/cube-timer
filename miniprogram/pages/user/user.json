@@ -1,0 +1,8 @@
+{
+    "usingComponents": {
+       "confirm-popper": "/components/popper/confirm-popper/confirm-popper",
+       "sync-popper": "/components/popper/sync-popper/sync-popper",
+       "theme-popper": "/components/popper/theme-popper/theme-popper"
+    },
+    "navigationStyle": "custom"
+}

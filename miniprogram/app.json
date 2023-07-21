@@ -1,11 +1,21 @@
 {
-    "pages": ["pages/index/index", "pages/logs/logs"],
+    "pages": [
+        "pages/home/home",
+        "pages/user/user",
+        "pages/update-profile/update-profile"
+    ],
+    "usingComponents": {
+        "icon-font": "/components/icon-font/icon-font",
+        "time-box": "/components/time-box/time-box",
+        "cube2d": "/components/cube/cube"
+    },
     "window": {
         "backgroundTextStyle": "light",
         "navigationBarBackgroundColor": "#fff",
         "navigationBarTitleText": "Weixin",
         "navigationBarTextStyle": "black"
     },
+    "lazyCodeLoading": "requiredComponents",
     "style": "v2",
     "sitemapLocation": "sitemap.json"
 }

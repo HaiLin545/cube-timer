@@ -1,0 +1,89 @@
+.user {
+    // background-color: #cde1fd;
+    min-height: 100vh;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+
+.nav-bar {
+    display: flex;
+    align-items: center;
+    .back-icon {
+        margin-left: 32rpx;
+    }
+}
+
+@avatar-size: 150rpx;
+
+.user-info {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .user-avatar {
+        border: 1px solid white;
+        height: @avatar-size;
+        width: @avatar-size;
+        border-radius: @avatar-size;
+    }
+    .user-name {
+        margin: 20rpx 40rpx;
+        font-size: 34rpx;
+        max-width: 75vw;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+}
+
+.login-area {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    .login-btn {
+        line-height: 60rpx;
+        margin-left: 40rpx;
+        width: fit-content;
+        text-align: center;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 20rpx;
+        font-size: 30rpx;
+        padding: 11rpx 26rpx;
+        box-shadow: 0rpx 0rpx 16rpx rgba(0, 0, 0, 0.2);
+        &:active {
+            background-color: rgba(255, 255, 255, 0.2);
+        }
+    }
+}
+
+.entry-list {
+    flex: 1;
+    background-color: rgba(255, 255, 255, 0.5);
+    margin-top: 30rpx;
+    padding-top: 20rpx;
+    .entry-item {
+        display: flex;
+        align-items: center;
+        height: 80rpx;
+        margin: 20rpx 30rpx;
+        border-radius: 10rpx;
+        .entry-icon {
+            margin-left: 50rpx;
+        }
+        .entry-title {
+            margin-left: 84rpx;
+            font-size: 30rpx;
+            line-height: 0;
+        }
+        &:active {
+            background-color: rgba(0, 0, 0, 0.1);
+        }
+    }
+
+    .separate-line {
+        height: 2rpx;
+        width: 100vw;
+        margin: 25rpx 0;
+        background-color: rgba(0, 0, 0, 0.4);
+    }
+}
+

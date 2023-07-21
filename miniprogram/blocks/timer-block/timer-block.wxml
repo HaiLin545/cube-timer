@@ -1,0 +1,73 @@
+<view class="timer-block">
+    <view class="top" wx:if="{{timerState==='Off'}}">
+        <view class="disruption">{{disruption}}</view>
+        <view class="buttons">
+            <view class="left">
+                <!-- <view class="btn">
+                    <icon-font icon="icon-add-circle-line" size="50rpx"></icon-font>
+                </view> -->
+            </view>
+            <view class="right">
+                <!-- <view class="btn">
+                    <icon-font class="btn" icon="icon-pencil-line" size="50rpx"></icon-font>
+                </view> -->
+                <view class="btn" bind:tap="updateDisruption">
+                    <icon-font class="btn" icon="icon-cached" size="50rpx"></icon-font>
+                </view>
+            </view>
+        </view>
+    </view>
+    <view class="clock" bind:tap="handleTap">
+        <view class="inspection" wx:if="{{timerState==='Inspecting'}}">
+            <view class="quit-btn" capture-catch:tap="quitInspection">
+                <icon-font icon="icon-close" size="50rpx"></icon-font>
+            </view>
+            <view class="inspecting" wx:if="{{timeLeft>0}}">
+                <view class="inspection-text">观察中</view>
+                <view class="time-left">{{timeLeft}}</view>
+            </view>
+            <view class="time-out-tip" wx:else>{{timeOutTip}}</view>
+        </view>
+        <time-box
+            wx:else
+            time="{{time}}"
+            size="{{timerState==='Timing'?180:150}}"
+            isDNF="{{timeOutTip==='DNF'}}"
+            isAdd2="{{timeOutTip==='+2' && !isTiming}}"
+        ></time-box>
+        <view class="operations">
+            <view class="operation-btn-group" wx:if="{{showOperation}}">
+                <view class="operation-btn" capture-catch:tap="recordOperation" data-opt="delete">
+                    <icon-font icon="icon-close" size="42rpx"></icon-font>
+                </view>
+                <view class="operation-btn" wx:if="{{isValid}}" capture-catch:tap="recordOperation" data-opt="dnf">
+                    <icon-font icon="icon-donotdisturb" size="42rpx"></icon-font>
+                </view>
+                <view class="operation-btn" wx:if="{{isValid}}" capture-catch:tap="recordOperation" data-opt="add2">
+                    <icon-font icon="icon-exposureplus2" size="42rpx"></icon-font>
+                </view>
+                <!-- <view class="operation-btn" capture-catch:tap="recordOperation" data-opt="comment">
+                    <icon-font icon="icon-comment" size="42rpx"></icon-font>
+                </view> -->
+            </view>
+            <view
+                class="back-operation"
+                wx:if="{{!showOperation && operationType!=''}}"
+                capture-catch:tap="handleBackOperation"
+            >
+                <icon-font icon="icon-line-070" size="40rpx"></icon-font>
+            </view>
+        </view>
+    </view>
+    <view class="tools" wx:if="{{timerState==='Off'}}">
+        <view class="numbers">
+            <view class="num-item" wx:for="{{numbers}}" wx:for-index="key" wx:for-item="value" wx:key="key">
+                <text class="key">{{key + '：'}}</text>
+                <text class="value">{{value}}</text>
+            </view>
+        </view>
+        <view class="cube">
+            <cube2d disruption="{{disruption}}" />
+        </view>
+    </view>
+</view>
