@@ -22,15 +22,16 @@ Page({
         showThemePopper: false,
         confirmPopperIsCancel: false,
         confirmPopperTitle: "请先登录",
-        confirmFunc: () => {},
+        confirmFunc: () => { },
         bgColor: app.style.bgColor,
     },
     onShow() {
+        console.log("onShow, theme=", app.style.bgColor);
         this.setData({
             isLogin: app.user.isLogin,
             avatarPath: app.user.avatar,
             nickName: app.user.nickName,
-            bgCOlor: app.style.bgColor,
+            bgColor: app.style.bgColor,
         });
     },
     handleTapBack() {
@@ -54,6 +55,8 @@ Page({
             })
             .catch((err) => {
                 console.log(err);
+                wx.hideLoading();
+
             })
             .finally(() => {
                 wx.hideLoading();
@@ -69,10 +72,17 @@ Page({
                     })
                     .catch((err) => {
                         console.log(err);
+                        wx.hideLoading();
+                        wx.showToast({
+                            icon: "error",
+                            title: "服务器异常",
+                        });
                     });
             },
             fail: (err) => {
                 console.log(err);
+                wx.hideLoading();
+
             },
         });
     },
@@ -153,7 +163,7 @@ Page({
                     })
                     .catch((err) => {
                         wx.showToast({
-                            icon: "fail",
+                            icon: "error",
                             title: err,
                         });
                     });
@@ -183,7 +193,7 @@ Page({
                     })
                     .catch((err) => {
                         wx.showToast({
-                            icon: "fail",
+                            icon: "error",
                             title: err,
                         });
                     });

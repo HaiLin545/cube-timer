@@ -19,10 +19,14 @@ export function request(params: { method: "GET" | "POST" | "DELETE" | "PUT"; url
                 reject(err);
             },
         });
+        setTimeout(() => {
+            console.log("time out reject")
+            reject(new Error('request timeout'));
+        }, 3000);
     });
 }
 
-export const getFullUrl = (avatar: string)=>{
+export const getFullUrl = (avatar: string) => {
     return baseUrl + "/avatar/" + avatar;
 }
 
